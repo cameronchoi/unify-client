@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import Navigation from './navigation/Navigation'
+import AppLoadingScreen from './screens/AppLoadingScreen'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat'
+import { AuthProvider } from './authentification/AuthProvider'
+
+import { View, Text } from 'react-native'
+
+// // import useCachedResources from './hooks/useCachedResources'
 
 export default function App () {
-  return (
-    <View style={styles.container}>
-      <Text>Change this text!</Text>
-      <StatusBar style='auto' />
-    </View>
-  )
-}
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+  if (!fontsLoaded) {
+    return <AppLoadingScreen />
+  } else {
+    return (
+      <SafeAreaProvider>
+        <AuthProvider>
+          <Navigation />
+        </AuthProvider>
+      </SafeAreaProvider>
+    )
   }
-})
+}
