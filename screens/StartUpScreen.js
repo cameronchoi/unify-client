@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
-import StyledText from '../components/StyledText'
+import NormalText from '../components/NormalText'
+import StartButton from '../components/StartButton'
 
+import { FontAwesome5 } from '@expo/vector-icons'
 import Colours from '../constants/colours'
 import { AuthContext } from '../authentification/AuthProvider'
 
@@ -9,21 +11,35 @@ export default function StartUpScreen ({ navigation }) {
   const { login } = useContext(AuthContext)
   return (
     <View style={styles.container}>
-      <StyledText style={{ color: 'white', fontSize: 30 }}>unify</StyledText>
-      <Button
-        title='Sign in'
-        onPress={() => {
-          login()
-        }}
-        color='white'
-      />
-      <Button
-        title='Sign up'
-        onPress={() => {
-          navigation.navigate('SignIn')
-        }}
-        color='white'
-      />
+      <View style={styles.logo}>
+        <View style={{ alignItems: 'center' }}>
+          <FontAwesome5
+            style={{ alignItems: 'center' }}
+            name='user-friends'
+            size={90}
+            color='white'
+          />
+        </View>
+        <NormalText style={{ color: 'white', fontSize: 70 }}>unify</NormalText>
+      </View>
+      <View style={styles.buttons}>
+        <StartButton
+          textColour={Colours.primary}
+          style={styles.firstButton}
+          title='Sign in'
+          onPress={() => {
+            login()
+          }}
+        />
+        <StartButton
+          textColour='white'
+          style={styles.secondButton}
+          title='Sign up'
+          onPress={() => {
+            navigation.navigate('EmailSignUp')
+          }}
+        />
+      </View>
     </View>
   )
 }
@@ -34,5 +50,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  logo: {
+    flex: 3,
+    justifyContent: 'center'
+  },
+  buttons: {
+    flex: 1
+  },
+  firstButton: {
+    backgroundColor: 'white'
+  },
+  secondButton: {
+    marginTop: 20,
+    backgroundColor: Colours.primary
   }
 })

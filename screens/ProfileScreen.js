@@ -1,10 +1,23 @@
-import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, View, Text, Button } from 'react-native'
 
-export default function ProfileScreen () {
+import { AuthContext } from '../authentification/AuthProvider'
+import ProfilePicture from '../components/ProfilePicture'
+import MediumText from '../components/MediumText'
+
+export default function ProfileScreen ({ navigation }) {
+  const { logout } = useContext(AuthContext)
   return (
     <View style={styles.container}>
-      <Text>Profile screen</Text>
+      <ProfilePicture />
+      <MediumText style={{ fontSize: 20, marginTop: 20 }}>Bob Smith</MediumText>
+      <Button
+        title='Logout'
+        onPress={() => {
+          logout()
+          navigation.navigate('Start')
+        }}
+      />
     </View>
   )
 }

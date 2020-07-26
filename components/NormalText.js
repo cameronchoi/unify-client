@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Text } from 'react-native'
 
-export default function MonoText (props) {
+export default function Normal (props) {
   return (
     <Text
       {...props}

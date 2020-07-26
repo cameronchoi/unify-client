@@ -4,8 +4,11 @@ import AsyncStorage from '@react-native-community/async-storage'
 import AuthStack from '../components/AuthStack'
 import AppTabs from '../components/AppTabs'
 
-import SignInScreen from '../components/SignInScreen'
-import HomeScreen from '../components/HomeScreen'
+export const AuthContext = React.createContext({
+  user: null,
+  login: () => {},
+  logout: () => {}
+})
 
 export default function AuthProvider () {
   const [state, dispatch] = React.useReducer(
@@ -61,7 +64,7 @@ export default function AuthProvider () {
 
   const authContext = React.useMemo(
     () => ({
-      signIn: async data => {
+      login: async data => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
@@ -69,7 +72,7 @@ export default function AuthProvider () {
 
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      logout: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
@@ -83,19 +86,10 @@ export default function AuthProvider () {
   )
 
   return (
-    // <AuthContext.Provider value={authContext}>
-    //   <NavigationContainer>
-    //     {state.userToken == null ? <AuthStack /> : <AppTabs />}
-    //   </NavigationContainer>
-    // </AuthContext.Provider>
     <AuthContext.Provider value={authContext}>
-      <Stack.Navigator>
-        {state.userToken == null ? (
-          <Stack.Screen name='SignIn' component={SignInScreen} />
-        ) : (
-          <Stack.Screen name='Home' component={HomeScreen} />
-        )}
-      </Stack.Navigator>
+      <NavigationContainer>
+        {state.userToken == null ? <AuthStack /> : <AppTabs />}
+      </NavigationContainer>
     </AuthContext.Provider>
   )
 }

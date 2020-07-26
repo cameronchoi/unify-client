@@ -1,24 +1,34 @@
 import * as React from 'react'
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { Button } from 'react-native-paper'
+import Colour from '../constants/colours'
 
-export default function SubmitButton ({ text, navigation, destination }) {
+export default function SubmitButton (props) {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={() => {
-        navigation.navigate({ destination })
-      }}
-    >
-      <Text>{text}</Text>
-    </TouchableOpacity>
+    <View style={{ ...props.style, ...styles.button }}>
+      <Button
+        {...props}
+        mode='contained'
+        uppercase={false}
+        color={Colour.primary}
+        style={styles.radius}
+        labelStyle={styles.text}
+      >
+        {props.children}
+      </Button>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#1574EA',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  button: {
+    width: '70%'
+  },
+  radius: {
+    borderRadius: 12
+  },
+  text: {
+    fontSize: 20,
+    fontFamily: 'Montserrat_400Regular'
   }
 })
