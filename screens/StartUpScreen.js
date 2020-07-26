@@ -5,10 +5,10 @@ import StartButton from '../components/StartButton'
 
 import { FontAwesome5 } from '@expo/vector-icons'
 import Colours from '../constants/colours'
-import { AuthContext } from '../authentification/AuthProvider'
+import { AuthContext } from '../authentification/AuthContext'
 
 export default function StartUpScreen ({ navigation }) {
-  const { login } = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext)
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -28,7 +28,7 @@ export default function StartUpScreen ({ navigation }) {
           style={styles.firstButton}
           title='Sign in'
           onPress={() => {
-            login()
+            signIn()
           }}
         />
         <StartButton

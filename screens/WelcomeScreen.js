@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 
 import { FontAwesome5 } from '@expo/vector-icons'
@@ -7,7 +7,10 @@ import Colour from '../constants/colours'
 import MediumText from '../components/MediumText'
 import SubmitButton from '../components/SubmitButton'
 
+import { AuthContext } from '../authentification/AuthContext'
+
 export default function WelcomeScreen ({ navigation }) {
+  const { signUp } = useContext(AuthContext)
   return (
     <View style={styles.container}>
       <View style={{ flex: 2, alignItems: 'center', marginTop: 200 }}>
@@ -19,7 +22,7 @@ export default function WelcomeScreen ({ navigation }) {
       <View style={{ flex: 1 }}>
         <SubmitButton
           onPress={() => {
-            navigation.navigate('AppTabs')
+            signUp()
           }}
         >
           Get Started

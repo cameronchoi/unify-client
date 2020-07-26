@@ -1,6 +1,5 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import AppTabs from './AppTabs'
 import StartUpScreen from '../screens/StartUpScreen'
 import EmailSignUpScreen from '../screens/EmailSignUpScreen'
 import NameSignUpScreen from '../screens/NameSignUpScreen'
@@ -27,7 +26,6 @@ const AuthStack = () => {
       <Stack.Screen name='DegreeSignUp' component={DegreeSignUpScreen} />
       <Stack.Screen name='SubjectSignUp' component={SubjectSignUpScreen} />
       <Stack.Screen name='Welcome' component={WelcomeScreen} />
-      <Stack.Screen name='AppTabs' component={AppTabs} />
     </Stack.Navigator>
   )
 }

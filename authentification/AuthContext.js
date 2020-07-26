@@ -1,47 +1,43 @@
-import * as React from 'react'
+import React, { useEffect, useReducer, useMemo, createContext } from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 
+import { NavigationContainer } from '@react-navigation/native'
 import AuthStack from '../components/AuthStack'
 import AppTabs from '../components/AppTabs'
 
-export const AuthContext = React.createContext({
-  user: null,
-  login: () => {},
-  logout: () => {}
-})
+export const AuthContext = createContext()
 
-export default function AuthProvider () {
-  const [state, dispatch] = React.useReducer(
-    (prevState, action) => {
-      switch (action.type) {
-        case 'RESTORE_TOKEN':
-          return {
-            ...prevState,
-            userToken: action.token,
-            isLoading: false
-          }
-        case 'SIGN_IN':
-          return {
-            ...prevState,
-            isSignout: false,
-            userToken: action.token
-          }
-        case 'SIGN_OUT':
-          return {
-            ...prevState,
-            isSignout: true,
-            userToken: null
-          }
+function reducer (prevState, action) {
+  switch (action.type) {
+    case 'RESTORE_TOKEN':
+      return {
+        ...prevState,
+        userToken: action.token,
+        isLoading: false
       }
-    },
-    {
-      isLoading: true,
-      isSignout: false,
-      userToken: null
-    }
-  )
+    case 'SIGN_IN':
+      return {
+        ...prevState,
+        isSignout: false,
+        userToken: action.token
+      }
+    case 'SIGN_OUT':
+      return {
+        ...prevState,
+        isSignout: true,
+        userToken: null
+      }
+  }
+}
 
-  React.useEffect(() => {
+export function AuthProvider (props) {
+  const [state, dispatch] = useReducer(reducer, {
+    isLoading: true,
+    isSignout: false,
+    userToken: null
+  })
+
+  useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken
@@ -50,6 +46,7 @@ export default function AuthProvider () {
         userToken = await AsyncStorage.getItem('userToken')
       } catch (e) {
         // Restoring token failed
+        console.log('THE TOKEN COULD NOT BE RETRIEVED')
       }
 
       // After restoring token, we may need to validate it in production apps
@@ -62,9 +59,9 @@ export default function AuthProvider () {
     bootstrapAsync()
   }, [])
 
-  const authContext = React.useMemo(
+  const authContext = useMemo(
     () => ({
-      login: async data => {
+      signIn: async data => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
@@ -72,7 +69,7 @@ export default function AuthProvider () {
 
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
       },
-      logout: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
