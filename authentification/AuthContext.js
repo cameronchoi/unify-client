@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useMemo, createContext } from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
 
-import { NavigationContainer } from '@react-navigation/native'
-import AuthStack from '../components/AuthStack'
-import AppTabs from '../components/AppTabs'
+// import { NavigationContainer } from '@react-navigation/native'
+// import AuthStack from '../components/AuthStack'
+// import AppTabs from '../components/AppTabs'
 
 export const AuthContext = createContext()
 
@@ -30,7 +30,7 @@ function reducer (prevState, action) {
   }
 }
 
-export function AuthProvider (props) {
+export function AuthProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, {
     isLoading: true,
     isSignout: false,
@@ -59,34 +59,32 @@ export function AuthProvider (props) {
     bootstrapAsync()
   }, [])
 
-  const authContext = useMemo(
-    () => ({
-      signIn: async data => {
-        // In a production app, we need to send some data (usually username, password) to server and get a token
-        // We will also need to handle errors if sign in failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
+  //   const authContext = useMemo(
+  //     () => ({
+  //       signIn: async data => {
+  //         // In a production app, we need to send some data (usually username, password) to server and get a token
+  //         // We will also need to handle errors if sign in failed
+  //         // After getting token, we need to persist the token using `AsyncStorage`
+  //         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
-      },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
-      signUp: async data => {
-        // In a production app, we need to send user data to server and get a token
-        // We will also need to handle errors if sign up failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
+  //         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
+  //       },
+  //       signOut: () => dispatch({ type: 'SIGN_OUT' }),
+  //       signUp: async data => {
+  //         // In a production app, we need to send user data to server and get a token
+  //         // We will also need to handle errors if sign up failed
+  //         // After getting token, we need to persist the token using `AsyncStorage`
+  //         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
-      }
-    }),
-    []
-  )
+  //         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
+  //       }
+  //     }),
+  //     []
+  //   )
 
   return (
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        {state.userToken == null ? <AuthStack /> : <AppTabs />}
-      </NavigationContainer>
+    <AuthContext.Provider value={[state, dispatch]}>
+      {children}
     </AuthContext.Provider>
   )
 }

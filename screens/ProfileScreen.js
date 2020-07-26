@@ -6,7 +6,7 @@ import ProfilePicture from '../components/ProfilePicture'
 import MediumText from '../components/MediumText'
 
 export default function ProfileScreen ({ navigation }) {
-  const { signOut } = useContext(AuthContext)
+  const [state, dispatch] = useContext(AuthContext)
   return (
     <View style={styles.container}>
       <ProfilePicture />
@@ -14,7 +14,7 @@ export default function ProfileScreen ({ navigation }) {
       <Button
         title='Sign Out'
         onPress={() => {
-          signOut()
+          dispatch({ type: 'SIGN_OUT' })
         }}
       />
     </View>

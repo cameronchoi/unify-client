@@ -8,7 +8,7 @@ import Colours from '../constants/colours'
 import { AuthContext } from '../authentification/AuthContext'
 
 export default function StartUpScreen ({ navigation }) {
-  const { signIn } = useContext(AuthContext)
+  const [state, dispatch] = useContext(AuthContext)
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -28,7 +28,7 @@ export default function StartUpScreen ({ navigation }) {
           style={styles.firstButton}
           title='Sign in'
           onPress={() => {
-            signIn()
+            dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
           }}
         />
         <StartButton
