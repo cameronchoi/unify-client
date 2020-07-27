@@ -4,6 +4,8 @@ import ProfileScreen from '../../screens/ProfileScreen'
 import MatchesScreen from '../../screens/MatchesScreen'
 import HomeScreen from '../../screens/HomeScreen'
 
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons'
+
 const Tab = createMaterialBottomTabNavigator()
 
 const AppTabsStack = () => {
@@ -14,9 +16,33 @@ const AppTabsStack = () => {
         backgroundColor: 'white'
       }}
     >
-      <Tab.Screen name='Profile' component={ProfileScreen} />
-      <Tab.Screen name='Home' component={HomeScreen} />
-      <Tab.Screen name='Matches' component={MatchesScreen} />
+      <Tab.Screen
+        name='Profile'
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name='md-person' size={26} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name='md-home' size={26} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name='Matches'
+        component={MatchesScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name='md-chatbubbles' size={26} color={color} />
+          )
+        }}
+      />
     </Tab.Navigator>
   )
 }

@@ -7,14 +7,14 @@ const ProfilePicture = ({ size, pictureStyle }) => {
     image = (
       <Image
         style={styles.small}
-        source={require('../assets/images/picture.jpg')}
+        source={require('../../assets/images/picture.jpg')}
       />
     )
   } else if (size === 'medium') {
     image = (
       <Image
         style={styles.medium}
-        source={require('../assets/images/picture.jpg')}
+        source={require('../../assets/images/picture.jpg')}
       />
     )
   }

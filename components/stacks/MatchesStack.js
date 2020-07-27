@@ -1,8 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import AppTabsStack from '../components/AppTabsStack'
-import MessagingScreen from '../screens/MessagingScreen'
+import AppTabsStack from './AppTabsStack'
+import MessagingScreen from '../../screens/MessagingScreen'
 
 const Stack = createStackNavigator()
 

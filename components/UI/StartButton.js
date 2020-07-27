@@ -1,5 +1,4 @@
 import React from 'react'
-import Colour from '../constants/colours'
 import NormalText from './NormalText'
 
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'

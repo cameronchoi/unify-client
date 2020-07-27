@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
