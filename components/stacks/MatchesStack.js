@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import AppTabsStack from './AppTabsStack'
 import MessagingScreen from '../../screens/MessagingScreen'
 
+import Fonts from '../../constants/fonts'
+
 const Stack = createStackNavigator()
 
 const MatchesStack = () => {
@@ -15,7 +17,7 @@ const MatchesStack = () => {
         options={{
           title: 'unify',
           headerTitleStyle: {
-            fontFamily: 'Montserrat_400Regular'
+            fontFamily: Fonts.normal
           }
         }}
       />

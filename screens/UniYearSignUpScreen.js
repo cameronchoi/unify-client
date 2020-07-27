@@ -5,6 +5,8 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import Fonts from '../constants/fonts'
+
 export default function UniYearSignUpScreen ({ navigation }) {
   const [year, setYear] = useState(null)
   return (
@@ -53,7 +55,7 @@ export default function UniYearSignUpScreen ({ navigation }) {
           }}
           dropDownStyle={{ backgroundColor: '#fafafa' }}
           onChangeTextItem={item => setYear(item.value)}
-          labelStyle={{ fontFamily: 'Montserrat_500Medium' }}
+          labelStyle={{ fontFamily: Fonts.medium }}
         />
         <SubmitButton
           onPress={() => {

@@ -3,6 +3,8 @@ import NormalText from './NormalText'
 
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 
+import Fonts from '../../constants/fonts'
+
 const StartButton = props => {
   return (
     <TouchableOpacity {...props} style={{ ...props.style, ...styles.button }}>
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontFamily: 'Montserrat_400Regular'
+    fontFamily: Fonts.normal
   }
 })
 

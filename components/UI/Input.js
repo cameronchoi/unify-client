@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 
+import Fonts from '../../constants/fonts'
+
 const Input = props => {
   return <TextInput {...props} style={{ ...styles.input, ...props.style }} />
 }
@@ -12,7 +14,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     fontSize: 16,
-    fontFamily: 'Montserrat_400Regular'
+    fontFamily: Fonts.normal
   }
 })
 

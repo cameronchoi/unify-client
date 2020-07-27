@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native'
 import { Button } from 'react-native-paper'
 import Colour from '../../constants/colours'
 
+import Fonts from '../../constants/fonts'
+
 export default function SubmitButton (props) {
   return (
     <View style={{ ...props.style, ...styles.button }}>
@@ -29,6 +31,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontFamily: 'Montserrat_400Regular'
+    fontFamily: Fonts.normal
   }
 })
