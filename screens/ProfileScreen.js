@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 
 import { AuthContext } from '../context/AuthContext'
-import ProfilePicture from '../components/ProfilePicture'
-import MediumText from '../components/MediumText'
+import ProfilePicture from '../components/UI/ProfilePicture'
+import MediumText from '../components/UI/MediumText'
 
 export default function ProfileScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)

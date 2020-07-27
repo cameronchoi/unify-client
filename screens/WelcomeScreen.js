@@ -4,8 +4,8 @@ import { StyleSheet, View, Text, Button } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import Colour from '../constants/colours'
 
-import MediumText from '../components/MediumText'
-import SubmitButton from '../components/SubmitButton'
+import MediumText from '../components/UI/MediumText'
+import SubmitButton from '../components/UI/SubmitButton'
 
 import { AuthContext } from '../context/AuthContext'
 

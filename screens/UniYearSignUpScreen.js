@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../components/UI/SubmitButton'
 import DropDownPicker from 'react-native-dropdown-picker'
-import MediumText from '../components/MediumText'
-import BackArrow from '../components/BackArrow'
+import MediumText from '../components/UI/MediumText'
+import BackArrow from '../components/UI/BackArrow'
 
 export default function UniYearSignUpScreen ({ navigation }) {
   const [year, setYear] = useState(null)

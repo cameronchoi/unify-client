@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
-import SubmitButton from '../components/SubmitButton'
-import Input from '../components/Input'
-import MediumText from '../components/MediumText'
-import BackArrow from '../components/BackArrow'
+import SubmitButton from '../components/UI/SubmitButton'
+import Input from '../components/UI/Input'
+import MediumText from '../components/UI/MediumText'
+import BackArrow from '../components/UI/BackArrow'
 
 export default function SubjectSignUpScreen ({ navigation }) {
   const [text, setText] = useState('')

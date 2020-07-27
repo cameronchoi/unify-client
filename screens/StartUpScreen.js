@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
-import NormalText from '../components/NormalText'
-import StartButton from '../components/StartButton'
+import NormalText from '../components/UI/NormalText'
+import StartButton from '../components/UI/StartButton'
 
 import { FontAwesome5 } from '@expo/vector-icons'
 import Colours from '../constants/colours'

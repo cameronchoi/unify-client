@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
-import NormalText from '../components/NormalText'
+import NormalText from '../components/UI/NormalText'
 import { TextInput } from 'react-native-paper'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../components/UI/SubmitButton'
 
 import Colours from '../constants/colours'
 

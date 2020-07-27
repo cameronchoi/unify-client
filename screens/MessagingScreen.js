@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  KeyboardAvoidingView,
-  SafeAreaView
-} from 'react-native'
+import { SafeAreaView } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 export default function MessagingScreen () {

@@ -9,7 +9,16 @@ const Stack = createStackNavigator()
 const MatchesStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Matches' component={AppTabsStack} />
+      <Stack.Screen
+        name='Hello'
+        component={AppTabsStack}
+        options={{
+          title: 'unify',
+          headerTitleStyle: {
+            fontFamily: 'Montserrat_400Regular'
+          }
+        }}
+      />
       <Stack.Screen name='Messaging' component={MessagingScreen} />
     </Stack.Navigator>
   )

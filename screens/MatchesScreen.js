@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, FlatList, Text, Button } from 'react-native'
-import MatchMessage from '../components/MatchMessage'
+import MatchMessage from '../components/UI/MatchMessage'
 
 export default function MatchesScreen ({ navigation }) {
   const [matches, setMatches] = useState([
@@ -28,7 +28,7 @@ export default function MatchesScreen ({ navigation }) {
 
   return (
     <FlatList
-      keyExtractor={item => item}
+      keyExtractor={item => item.toString()}
       data={matches}
       renderItem={({ item }) => (
         <MatchMessage onPressHandler={onPressHandler} />
