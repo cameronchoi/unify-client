@@ -10,7 +10,7 @@ const MatchesStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name='Hello'
+        name='Home'
         component={AppTabsStack}
         options={{
           title: 'unify',
