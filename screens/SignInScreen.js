@@ -8,6 +8,7 @@ import SubmitButton from '../components/UI/SubmitButton'
 import Colours from '../constants/colours'
 
 import { AuthContext } from '../context/AuthContext'
+import fonts from '../constants/fonts'
 
 const SignInScreen = () => {
   const [state, dispatch] = useContext(AuthContext)
