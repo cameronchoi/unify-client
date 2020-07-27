@@ -6,8 +6,8 @@ import {
   Montserrat_400Regular,
   Montserrat_500Medium
 } from '@expo-google-fonts/montserrat'
-import { AuthProvider } from './authentification/AuthContext'
-import Navigation from './navigation/navigation'
+import { AuthProvider } from './context/AuthContext'
+import Navigation from './navigation/Navigation'
 
 // // import useCachedResources from './hooks/useCachedResources'
 

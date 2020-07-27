@@ -1,22 +1,33 @@
 import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
-const ProfilePicture = () => {
-  return (
-    <View style={styles.container}>
+const ProfilePicture = ({ size, pictureStyle }) => {
+  let image
+  if (size === 'small') {
+    image = (
       <Image
-        style={styles.logo}
+        style={styles.small}
         source={require('../assets/images/picture.jpg')}
       />
-    </View>
-  )
+    )
+  } else if (size === 'medium') {
+    image = (
+      <Image
+        style={styles.medium}
+        source={require('../assets/images/picture.jpg')}
+      />
+    )
+  }
+  return <View style={pictureStyle}>{image}</View>
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50
+  small: {
+    width: 66,
+    height: 66,
+    borderRadius: 33
   },
-  logo: {
+  medium: {
     width: 100,
     height: 100,
     borderRadius: 50

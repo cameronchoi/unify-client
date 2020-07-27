@@ -7,7 +7,7 @@ import Colour from '../constants/colours'
 import MediumText from '../components/MediumText'
 import SubmitButton from '../components/SubmitButton'
 
-import { AuthContext } from '../authentification/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
 export default function WelcomeScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)

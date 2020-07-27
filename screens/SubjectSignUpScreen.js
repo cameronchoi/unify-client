@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, FlatList } from 'react-native'
 import SubmitButton from '../components/SubmitButton'
 import Input from '../components/Input'
 import MediumText from '../components/MediumText'
@@ -27,26 +27,19 @@ export default function SubjectSignUpScreen ({ navigation }) {
           onSubmitEditing={onSubmitEditingHandler}
           autoCapitalize='characters'
           value={text}
-          placeholder='Subject Name'
+          placeholder='Subject Code'
           style={styles.test}
         />
-        <View>
-          {subjects.map(subject => (
-            <View
-              key={subject}
-              style={{
-                alignItems: 'center',
-                borderWidth: 1,
-                borderColor: 'black',
-                marginVertical: 3,
-                padding: 5,
-                borderRadius: 5
-              }}
-            >
-              <Text>{subject}</Text>
+        <FlatList
+          numColumns={2}
+          keyExtractor={item => item.subject}
+          data={subjects}
+          renderItem={({ item }) => (
+            <View style={styles.subjectText}>
+              <Text>{item}</Text>
             </View>
-          ))}
-        </View>
+          )}
+        />
         <SubmitButton
           style={styles.subjectButton}
           onPress={() => {
@@ -68,5 +61,14 @@ const styles = StyleSheet.create({
   },
   subjectButton: {
     marginTop: 35
+  },
+  subjectText: {
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'black',
+    marginVertical: 3,
+    padding: 5,
+    borderRadius: 5,
+    marginHorizontal: 30
   }
 })

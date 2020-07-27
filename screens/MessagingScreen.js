@@ -1,18 +1,35 @@
-import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React, { useState, useEffect, useCallback } from 'react'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Platform,
+  KeyboardAvoidingView,
+  SafeAreaView
+} from 'react-native'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 export default function MessagingScreen () {
-  return (
-    <View style={styles.container}>
-      <Text>Messaging screen</Text>
-    </View>
+  const [messages, setMessages] = useState([])
+  const chat = (
+    <GiftedChat
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+        _id: 1
+      }}
+    />
   )
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+  useEffect(() => {
+    // change to actually request
+  }, [])
+
+  const onSend = useCallback((messages = []) => {
+    setMessages(previousMessages =>
+      GiftedChat.append(previousMessages, messages)
+    )
+  }, [])
+
+  return <SafeAreaView style={{ flex: 1 }}>{chat}</SafeAreaView>
+}
