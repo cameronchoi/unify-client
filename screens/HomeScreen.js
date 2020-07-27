@@ -1,5 +1,12 @@
 import React, { useContext } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  TouchableHighlight
+} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import Card from '../components/UI/Card'
 import NormalText from '../components/UI/NormalText'
@@ -25,17 +32,22 @@ export default function HomeScreen ({ navigation }) {
           textStyle={{ fontSize: 14 }}
         />
       </View>
-      <Card style={{ width: '75%', height: 400, marginTop: 70 }}>
-        <FontAwesome5
-          style={{ marginBottom: 100, marginTop: 65 }}
-          name='user-friends'
-          size={95}
-          color='white'
-        />
-        <NormalText style={{ fontSize: 20, color: 'white' }}>
-          Press to find a match
-        </NormalText>
-      </Card>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={{ flex: 1, width: '100%', alignItems: 'center' }}
+      >
+        <Card style={{ width: '80%', height: 400, marginTop: 70 }}>
+          <FontAwesome5
+            style={{ marginBottom: 100, marginTop: 65 }}
+            name='user-friends'
+            size={95}
+            color='white'
+          />
+          <NormalText style={{ fontSize: 20, color: 'white' }}>
+            Press to find a match
+          </NormalText>
+        </Card>
+      </TouchableOpacity>
     </View>
   )
 }
