@@ -33,7 +33,7 @@ export default function FriendSignUpScreen ({ navigation }) {
         </View>
         <SubmitButton
           onPress={() => {
-            navigation.navigate('Welcome')
+            navigation.navigate('AvatarSignUp')
           }}
         >
           Continue

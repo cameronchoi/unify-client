@@ -19,7 +19,7 @@ export default function UniNameSignUpScreen ({ navigation }) {
         <Input
           onChangeText={text => setText(text)}
           value={text}
-          placeholder='University name'
+          placeholder='University Name'
           style={styles.test}
         />
         <SubmitButton
