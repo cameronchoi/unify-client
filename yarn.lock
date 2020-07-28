@@ -961,6 +961,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/montserrat/-/montserrat-0.1.0.tgz#745361cf6c7414749161930e94ccc962ed8ee7d3"
   integrity sha512-jSGVtgapN4Ahxf/p978TWIPV+Ax2cc60671BzkewLG/zGNIyRreE3eXsVJudotpRl2fRJQC5Q98DARfPh917Jg==
 
+"@expo-google-fonts/muli@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/muli/-/muli-0.1.0.tgz#e703c684e1ebbe1c1dddf5949701702d571232c7"
+  integrity sha512-wLsUpVs19LNx+TqqjFCe7Jxe96wrK8+OdW+E510QDK4j1hKHWjj9/k1BsQeVX6sF6wfDQdGGHZxAWeD7umRP7A==
+
 "@expo/configure-splash-screen@~0.1.0":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.1.12.tgz#8d8889fc98e87cececdb48af45bc8d6447ce699d"

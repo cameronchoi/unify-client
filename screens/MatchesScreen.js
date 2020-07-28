@@ -4,8 +4,8 @@ import MatchMessage from '../components/UI/MatchMessage'
 import MediumText from '../components/UI/MediumText'
 
 export default function MatchesScreen ({ navigation }) {
-  //   const [matches, setMatches] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  const [matches, setMatches] = useState([])
+  const [matches, setMatches] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+  //   const [matches, setMatches] = useState([])
 
   const onPressHandler = () => {
     navigation.navigate('Messaging')

@@ -28,14 +28,12 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
 
 const styles = StyleSheet.create({
   small: {
-    width: 66,
-    height: 66,
-    borderRadius: 33
+    width: 60,
+    height: 64
   },
   medium: {
-    width: 170,
-    height: 170,
-    borderRadius: 85
+    width: 150,
+    height: 160
   }
 })
 

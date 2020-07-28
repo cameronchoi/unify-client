@@ -14,7 +14,7 @@ export default function EmailSignUpScreen ({ navigation }) {
           navigation.goBack()
         }}
       />
-      <MediumText style={styles.title}>My university email is...</MediumText>
+      <MediumText style={styles.title}>My email is...</MediumText>
       <View style={{ alignItems: 'center' }}>
         <Input
           onChangeText={text => setText(text)}
@@ -26,7 +26,7 @@ export default function EmailSignUpScreen ({ navigation }) {
         />
         <SubmitButton
           onPress={() => {
-            navigation.navigate('NameSignUp')
+            navigation.navigate('PasswordSignUp')
           }}
         >
           Continue

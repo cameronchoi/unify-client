@@ -17,7 +17,7 @@ const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: 'black',
-          opacity: 0.93
+          opacity: 0.95
         }}
       >
         <NormalText

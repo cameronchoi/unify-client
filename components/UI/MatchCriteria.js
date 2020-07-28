@@ -13,7 +13,7 @@ const MatchCriteria = props => {
       <View
         style={{ flex: 1, justifyContent: 'flex-start', marginHorizontal: 37 }}
       >
-        <NormalText textStyle={props.textStyle}>{props.title}</NormalText>
+        <NormalText style={props.textStyle}>{props.title}</NormalText>
       </View>
       <View style={{ marginRight: 37 }}>
         <Switch

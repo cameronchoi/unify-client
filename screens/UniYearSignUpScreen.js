@@ -57,7 +57,7 @@ export default function UniYearSignUpScreen ({ navigation }) {
           onChangeItem={item => {
             setYear(item.value)
           }}
-          labelStyle={{ fontFamily: Fonts.medium }}
+          labelStyle={{ fontFamily: Fonts.normal }}
         />
         <SubmitButton
           onPress={() => {

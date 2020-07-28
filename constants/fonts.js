@@ -1,4 +1,4 @@
 export default {
-  normal: 'Montserrat_400Regular',
-  medium: 'Montserrat_500Medium'
+  normal: 'Muli_400Regular',
+  medium: 'Muli_500Medium'
 }

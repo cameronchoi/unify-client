@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import StartUpScreen from '../../screens/StartUpScreen'
 import SignInScreen from '../../screens/SignInScreen'
 import EmailSignUpScreen from '../../screens/EmailSignUpScreen'
+import PasswordSignUpScreen from '../../screens/PasswordSignUpScreen'
 import NameSignUpScreen from '../../screens/NameSignUpScreen'
 import UniNameSignUpScreen from '../../screens/UniNameSignUpScreen'
 import UniYearSignUpScreen from '../../screens/UniYearSignUpScreen'
@@ -22,6 +23,7 @@ const AuthStack = () => {
       <Stack.Screen name='Start' component={StartUpScreen} />
       <Stack.Screen name='SignIn' component={SignInScreen} />
       <Stack.Screen name='EmailSignUp' component={EmailSignUpScreen} />
+      <Stack.Screen name='PasswordSignUp' component={PasswordSignUpScreen} />
       <Stack.Screen name='NameSignUp' component={NameSignUpScreen} />
       <Stack.Screen name='UniNameSignUp' component={UniNameSignUpScreen} />
       <Stack.Screen name='UniYearSignUp' component={UniYearSignUpScreen} />

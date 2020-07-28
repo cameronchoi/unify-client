@@ -28,17 +28,17 @@ export default function HomeScreen ({ navigation }) {
         <MatchCriteria
           title='Match by degree'
           style={styles.criteria}
-          textStyle={{ fontSize: 14 }}
+          textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
           title='Match by subjects'
           style={styles.criteria}
-          textStyle={{ fontSize: 14 }}
+          textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
           title='Match by interests and personality'
           style={styles.criteria}
-          textStyle={{ fontSize: 14 }}
+          textStyle={{ fontSize: 15 }}
         />
       </View>
       <TouchableOpacity
@@ -48,12 +48,12 @@ export default function HomeScreen ({ navigation }) {
       >
         <Card style={{ width: '80%', height: 400, marginTop: 70 }}>
           <FontAwesome5
-            style={{ marginBottom: 100, marginTop: 65 }}
+            style={{ marginBottom: 110, marginTop: 65 }}
             name='user-friends'
             size={95}
             color='white'
           />
-          <NormalText style={{ fontSize: 20, color: 'white' }}>
+          <NormalText style={{ fontSize: 23, color: 'white' }}>
             Press to find a match
           </NormalText>
         </Card>

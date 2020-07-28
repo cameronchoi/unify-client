@@ -31,7 +31,7 @@ export default function NameSignUpScreen ({ navigation }) {
         />
         <SubmitButton
           onPress={() => {
-            navigation.navigate('UniYearSignUp')
+            navigation.navigate('UniNameSignUp')
           }}
         >
           Continue

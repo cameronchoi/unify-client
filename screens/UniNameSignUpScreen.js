@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
@@ -6,6 +6,7 @@ import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
 export default function EmailSignUpScreen ({ navigation }) {
+  const [text, setText] = useState('')
   return (
     <View>
       <BackArrow
@@ -16,14 +17,14 @@ export default function EmailSignUpScreen ({ navigation }) {
       <MediumText style={styles.title}>My university name is...</MediumText>
       <View style={{ alignItems: 'center' }}>
         <Input
-          placeholder='Email Address'
+          onChangeText={text => setText(text)}
+          value={text}
+          placeholder='University name'
           style={styles.test}
-          keyboardType='email-address'
-          autoCapitalize='none'
         />
         <SubmitButton
           onPress={() => {
-            navigation.navigate('NameSignUp')
+            navigation.navigate('UniYearSignUp')
           }}
         >
           Continue

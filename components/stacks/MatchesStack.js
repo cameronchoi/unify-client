@@ -17,7 +17,8 @@ const MatchesStack = () => {
         options={{
           title: 'unify',
           headerTitleStyle: {
-            fontFamily: Fonts.normal
+            fontFamily: Fonts.normal,
+            fontSize: 20
           }
         }}
       />
