@@ -10,13 +10,13 @@ const HairColourPicker = ({ hairColour, setHairColour }) => {
         { label: 'Auburn', value: 'Auburn' },
         { label: 'Black', value: 'Black' },
         { label: 'Blonde', value: 'Blonde' },
-        { label: 'BlondeGolden', value: 'BlondeGolden' },
+        { label: 'Blonde Golden', value: 'BlondeGolden' },
         { label: 'Brown', value: 'Brown' },
-        { label: 'BrownDark', value: 'BrownDark' },
-        { label: 'PastelPink', value: 'PastelPink' },
+        { label: 'Brown Dark', value: 'BrownDark' },
+        { label: 'Pastel Pink', value: 'PastelPink' },
         { label: 'Platinum', value: 'Platinum' },
         { label: 'Red', value: 'Red' },
-        { label: 'SilverGray', value: 'SilverGray' }
+        { label: 'Silver Gray', value: 'SilverGray' }
       ]}
       isVisible={false}
       defaultValue={hairColour}

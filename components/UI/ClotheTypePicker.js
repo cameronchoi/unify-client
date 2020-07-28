@@ -7,15 +7,15 @@ const ClotheTypePicker = ({ clotheType, setClotheType }) => {
   return (
     <DropDownPicker
       items={[
-        { label: 'BlazerShirt', value: 'BlazerShirt' },
-        { label: 'BlazerSweater', value: 'BlazerSweater' },
-        { label: 'CollarSweater', value: 'CollarSweater' },
-        { label: 'GraphicShirt', value: 'GraphicShirt' },
+        { label: 'Blazer Shirt', value: 'BlazerShirt' },
+        { label: 'Blazer Sweater', value: 'BlazerSweater' },
+        { label: 'Collar Sweater', value: 'CollarSweater' },
+        { label: 'Graphic Shirt', value: 'GraphicShirt' },
         { label: 'Hoodie', value: 'Hoodie' },
         { label: 'Overall', value: 'Overall' },
-        { label: 'ShirtCrewNeck', value: 'ShirtCrewNeck' },
-        { label: 'ShirtScoopNeck', value: 'ShirtScoopNeck' },
-        { label: 'ShirtVNeck', value: 'ShirtVNeck' }
+        { label: 'Crew Neck', value: 'ShirtCrewNeck' },
+        { label: 'Scoop Neck', value: 'ShirtScoopNeck' },
+        { label: 'V-neck', value: 'ShirtVNeck' }
       ]}
       defaultValue={clotheType}
       containerStyle={{

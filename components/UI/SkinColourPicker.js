@@ -12,7 +12,7 @@ const SkinColourPicker = ({ skinColour, setSkinColour }) => {
         { label: 'Pale', value: 'Pale' },
         { label: 'Light', value: 'Light' },
         { label: 'Brown', value: 'Brown' },
-        { label: 'DarkBrown', value: 'DarkBrown' },
+        { label: 'Dark Brown', value: 'DarkBrown' },
         { label: 'Black', value: 'Black' }
       ]}
       defaultValue={skinColour}

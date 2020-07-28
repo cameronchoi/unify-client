@@ -5,7 +5,7 @@ import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
-export default function EmailSignUpScreen ({ navigation }) {
+export default function UniNameSignUpScreen ({ navigation }) {
   const [text, setText] = useState('')
   return (
     <View>

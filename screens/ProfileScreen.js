@@ -22,7 +22,9 @@ export default function ProfileScreen ({ navigation }) {
           uri='https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
         />
       </TouchableOpacity>
-      <MediumText style={{ fontSize: 20, marginTop: 20 }}>Bob Smith</MediumText>
+      <MediumText style={{ fontSize: 20, marginTop: 20 }}>
+        Michelle Smith
+      </MediumText>
       <Button
         title='Sign Out'
         onPress={() => {

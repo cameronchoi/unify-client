@@ -9,6 +9,8 @@ import UniNameSignUpScreen from '../../screens/UniNameSignUpScreen'
 import UniYearSignUpScreen from '../../screens/UniYearSignUpScreen'
 import DegreeSignUpScreen from '../../screens/DegreeSignUpScreen'
 import SubjectSignUpScreen from '../../screens/SubjectSignUpScreen'
+import PersonalSignUpScreen from '../../screens/PersonalSignUpScreen'
+import FriendSignUpScreen from '../../screens/FriendSignUpScreen'
 import WelcomeScreen from '../../screens/WelcomeScreen'
 
 const Stack = createStackNavigator()
@@ -29,6 +31,8 @@ const AuthStack = () => {
       <Stack.Screen name='UniYearSignUp' component={UniYearSignUpScreen} />
       <Stack.Screen name='DegreeSignUp' component={DegreeSignUpScreen} />
       <Stack.Screen name='SubjectSignUp' component={SubjectSignUpScreen} />
+      <Stack.Screen name='PersonalSignUp' component={PersonalSignUpScreen} />
+      <Stack.Screen name='FriendSignUp' component={FriendSignUpScreen} />
       <Stack.Screen name='Welcome' component={WelcomeScreen} />
     </Stack.Navigator>
   )

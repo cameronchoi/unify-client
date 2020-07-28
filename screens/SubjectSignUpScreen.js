@@ -43,7 +43,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
         <SubmitButton
           style={styles.subjectButton}
           onPress={() => {
-            navigation.navigate('Welcome')
+            navigation.navigate('PersonalSignUp')
           }}
         >
           Continue

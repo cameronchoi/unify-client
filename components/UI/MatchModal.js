@@ -32,7 +32,7 @@ const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
         <MediumText
           style={{ fontSize: 20, color: 'white', marginVertical: 20 }}
         >
-          Bob Smith
+          Michelle Smith
         </MediumText>
         <StartButton
           textColour='white'
