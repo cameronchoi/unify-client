@@ -54,7 +54,9 @@ export default function UniYearSignUpScreen ({ navigation }) {
             justifyContent: 'flex-start'
           }}
           dropDownStyle={{ backgroundColor: '#fafafa' }}
-          onChangeTextItem={item => setYear(item.value)}
+          onChangeItem={item => {
+            setYear(item.value)
+          }}
           labelStyle={{ fontFamily: Fonts.medium }}
         />
         <SubmitButton

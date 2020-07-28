@@ -25,7 +25,10 @@ const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
         >
           You have matched with...
         </NormalText>
-        <ProfilePicture size='medium' />
+        <ProfilePicture
+          size='medium'
+          uri='https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
+        />
         <MediumText
           style={{ fontSize: 20, color: 'white', marginVertical: 20 }}
         >

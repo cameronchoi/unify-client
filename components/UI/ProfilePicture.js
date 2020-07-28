@@ -1,20 +1,25 @@
 import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
-const ProfilePicture = ({ size, pictureStyle }) => {
+const ProfilePicture = ({ size, pictureStyle, uri }) => {
   let image
   if (size === 'small') {
     image = (
       <Image
         style={styles.small}
-        source={require('../../assets/images/picture.jpg')}
+        source={{
+          uri:
+            'https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
+        }}
       />
     )
   } else if (size === 'medium') {
     image = (
       <Image
         style={styles.medium}
-        source={require('../../assets/images/picture.jpg')}
+        source={{
+          uri: uri
+        }}
       />
     )
   }
@@ -28,9 +33,9 @@ const styles = StyleSheet.create({
     borderRadius: 33
   },
   medium: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
+    width: 170,
+    height: 170,
+    borderRadius: 85
   }
 })
 
