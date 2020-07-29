@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function EmailSignUpScreen ({ navigation }) {
+  const [state, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
   return (
     <View>
@@ -26,6 +29,7 @@ export default function EmailSignUpScreen ({ navigation }) {
         />
         <SubmitButton
           onPress={() => {
+            dispatch({ type: 'EMAIL', email: text })
             navigation.navigate('PasswordSignUp')
           }}
         >

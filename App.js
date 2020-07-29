@@ -26,6 +26,7 @@ import {
   Muli_800ExtraBold_Italic,
   Muli_900Black_Italic
 } from '@expo-google-fonts/muli'
+
 import { AuthProvider } from './context/AuthContext'
 import Navigation from './navigation/Navigation'
 

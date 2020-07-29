@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function SubjectSignUpScreen ({ navigation }) {
+  const [state, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
   const [subjects, setSubjects] = useState([])
 
@@ -43,6 +46,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
         <SubmitButton
           style={styles.subjectButton}
           onPress={() => {
+            dispatch({ type: 'SUBJECTS', subjects: subjects })
             navigation.navigate('PersonalSignUp')
           }}
         >

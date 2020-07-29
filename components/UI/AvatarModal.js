@@ -11,16 +11,25 @@ import SubmitButton from './SubmitButton'
 
 import { Entypo } from '@expo/vector-icons'
 
-const AvatarModal = ({ modalOpen, backHandler }) => {
-  const [topType, setTopType] = useState('LongHairStraight')
-  const [hairColour, setHairColour] = useState('Brown')
-  const [clotheType, setClotheType] = useState('Hoodie')
-  const [skinColour, setSkinColour] = useState('Light')
-
+const AvatarModal = ({
+  modalOpen,
+  backHandler,
+  saveHandler,
+  currentTopType,
+  currentHairColour,
+  currentClotheType,
+  currentSkinColour
+}) => {
+  const [topType, setTopType] = useState(currentTopType)
+  const [hairColour, setHairColour] = useState(currentHairColour)
+  const [clotheType, setClotheType] = useState(currentClotheType)
+  const [skinColour, setSkinColour] = useState(currentSkinColour)
   return (
     <Modal visible={modalOpen} animationType='slide'>
       <TouchableOpacity
-        onPress={backHandler}
+        onPress={() => {
+          backHandler()
+        }}
         style={{ marginTop: 50, marginLeft: 10, width: 30 }}
       >
         <Entypo name='cross' size={35} color='black' />
@@ -65,6 +74,7 @@ const AvatarModal = ({ modalOpen, backHandler }) => {
       <View style={{ alignItems: 'center' }}>
         <SubmitButton
           onPress={() => {
+            saveHandler(topType, hairColour, clotheType, skinColour)
             backHandler()
           }}
         >

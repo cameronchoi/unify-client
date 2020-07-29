@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function NameSignUpScreen ({ navigation }) {
   const [firstText, setFirstText] = useState('')
   const [secText, setSecText] = useState('')
+  const [state, dispatch] = useContext(SignUpContext)
   return (
     <View>
       <BackArrow
@@ -26,11 +29,12 @@ export default function NameSignUpScreen ({ navigation }) {
         <Input
           onChangeText={secText => setSecText(secText)}
           value={secText}
-          placeholder='Second Name'
+          placeholder='Last Name'
           style={styles.second}
         />
         <SubmitButton
           onPress={() => {
+            dispatch({ type: 'NAME', firstName: firstText, lastName: secText })
             navigation.navigate('UniNameSignUp')
           }}
         >

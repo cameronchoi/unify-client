@@ -10,16 +10,30 @@ import AvatarModal from '../components/UI/AvatarModal'
 export default function ProfileScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)
   const [modalOpen, setModalOpen] = useState(false)
+  const [topType, setTopType] = useState('LongHairStraight')
+  const [hairColour, setHairColour] = useState('Brown')
+  const [clotheType, setClotheType] = useState('Hoodie')
+  const [skinColour, setSkinColour] = useState('Light')
   return (
     <View style={styles.container}>
       <AvatarModal
+        currentTopType={topType}
+        currentHairColour={hairColour}
+        currentClotheType={clotheType}
+        currentSkinColour={skinColour}
+        saveHandler={(topType, hairColour, clotheType, skinColour) => {
+          setTopType(topType)
+          setHairColour(hairColour)
+          setClotheType(clotheType)
+          setSkinColour(skinColour)
+        }}
         modalOpen={modalOpen}
         backHandler={() => setModalOpen(false)}
       />
       <TouchableOpacity onPress={() => setModalOpen(true)}>
         <ProfilePicture
           size='medium'
-          uri='https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
+          uri={`https://avataaars.io/png?topType=${topType}&hairColor=${hairColour}&clotheType=${clotheType}&skinColor=${skinColour}&avatarStyle=Circle`}
         />
       </TouchableOpacity>
       <MediumText style={{ fontSize: 20, marginTop: 20 }}>

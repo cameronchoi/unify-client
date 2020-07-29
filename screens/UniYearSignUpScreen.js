@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import DropDownPicker from 'react-native-dropdown-picker'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 import Fonts from '../constants/fonts'
 
 export default function UniYearSignUpScreen ({ navigation }) {
+  const [state, dispatch] = useContext(SignUpContext)
   const [year, setYear] = useState(null)
   return (
     <View>
@@ -61,6 +64,7 @@ export default function UniYearSignUpScreen ({ navigation }) {
         />
         <SubmitButton
           onPress={() => {
+            dispatch({ type: 'UNI_YEAR', uniYear: year })
             navigation.navigate('DegreeSignUp')
           }}
         >

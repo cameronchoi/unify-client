@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
 import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function PasswordSignUpScreen ({ navigation }) {
+  const [text, setText] = useState('')
+  const [state, dispatch] = useContext(SignUpContext)
   return (
     <View>
       <BackArrow
@@ -16,6 +20,8 @@ export default function PasswordSignUpScreen ({ navigation }) {
       <MediumText style={styles.title}>My password is...</MediumText>
       <View style={{ alignItems: 'center' }}>
         <Input
+          onChangeText={text => setText(text)}
+          value={text}
           placeholder='Password'
           style={styles.signUpInput}
           autoCapitalize='none'
@@ -23,6 +29,7 @@ export default function PasswordSignUpScreen ({ navigation }) {
         />
         <SubmitButton
           onPress={() => {
+            dispatch({ type: 'PASSWORD', password: text })
             navigation.navigate('NameSignUp')
           }}
         >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import MultiLineInput from '../components/UI/MultiLineInput'
@@ -6,7 +6,10 @@ import MediumText from '../components/UI/MediumText'
 import NormalText from '../components/UI/NormalText'
 import BackArrow from '../components/UI/BackArrow'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function PersonalSignUpScreen ({ navigation }) {
+  const [state, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
   return (
     <View>
@@ -33,6 +36,7 @@ export default function PersonalSignUpScreen ({ navigation }) {
         </View>
         <SubmitButton
           onPress={() => {
+            dispatch({ type: 'DESCRIBE_SELF', describeSelf: text })
             navigation.navigate('FriendSignUp')
           }}
         >
