@@ -27,12 +27,12 @@ const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
         </NormalText>
         <ProfilePicture
           size='medium'
-          uri='https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
+          uri='https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
         />
         <MediumText
           style={{ fontSize: 20, color: 'white', marginVertical: 20 }}
         >
-          Michelle Smith
+          Jimmy Johnson
         </MediumText>
         <StartButton
           textColour='white'

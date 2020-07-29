@@ -8,7 +8,7 @@ import BackArrow from '../components/UI/BackArrow'
 import { SignUpContext } from '../context/SignUpContext'
 
 export default function SubjectSignUpScreen ({ navigation }) {
-  const [state, dispatch] = useContext(SignUpContext)
+  const [signUpState, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
   const [subjects, setSubjects] = useState([])
 

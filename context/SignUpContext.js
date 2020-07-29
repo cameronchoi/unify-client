@@ -64,7 +64,7 @@ function reducer (prevState, action) {
 }
 
 export const SignUpProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [signUpState, dispatch] = useReducer(reducer, {
     email: null,
     password: null,
     firstName: null,
@@ -83,7 +83,7 @@ export const SignUpProvider = ({ children }) => {
     }
   })
   return (
-    <SignUpContext.Provider value={[state, dispatch]}>
+    <SignUpContext.Provider value={[signUpState, dispatch]}>
       {children}
     </SignUpContext.Provider>
   )

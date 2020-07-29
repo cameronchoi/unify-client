@@ -10,7 +10,7 @@ import { SignUpContext } from '../context/SignUpContext'
 import Fonts from '../constants/fonts'
 
 export default function UniYearSignUpScreen ({ navigation }) {
-  const [state, dispatch] = useContext(SignUpContext)
+  const [signUpState, dispatch] = useContext(SignUpContext)
   const [year, setYear] = useState(null)
   return (
     <View>

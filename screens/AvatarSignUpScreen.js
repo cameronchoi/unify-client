@@ -9,7 +9,7 @@ import AvatarModal from '../components/UI/AvatarModal'
 import { SignUpContext } from '../context/SignUpContext'
 
 export default function AvatarSignUpScreen ({ navigation }) {
-  const [state, dispatch] = useContext(SignUpContext)
+  const [signUpState, dispatch] = useContext(SignUpContext)
   const [modalOpen, setModalOpen] = useState(false)
 
   const [topType, setTopType] = useState('LongHairStraight')
@@ -57,7 +57,6 @@ export default function AvatarSignUpScreen ({ navigation }) {
               clotheType: clotheType,
               skinColour: skinColour
             })
-            console.log(state)
             navigation.navigate('Welcome')
           }}
         >

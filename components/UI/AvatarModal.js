@@ -27,9 +27,7 @@ const AvatarModal = ({
   return (
     <Modal visible={modalOpen} animationType='slide'>
       <TouchableOpacity
-        onPress={() => {
-          backHandler()
-        }}
+        onPress={backHandler}
         style={{ marginTop: 50, marginLeft: 10, width: 30 }}
       >
         <Entypo name='cross' size={35} color='black' />

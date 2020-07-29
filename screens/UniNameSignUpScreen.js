@@ -9,7 +9,7 @@ import { SignUpContext } from '../context/SignUpContext'
 
 export default function UniNameSignUpScreen ({ navigation }) {
   const [text, setText] = useState('')
-  const [state, dispatch] = useContext(SignUpContext)
+  const [signUpState, dispatch] = useContext(SignUpContext)
   return (
     <View>
       <BackArrow

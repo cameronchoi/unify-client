@@ -9,7 +9,10 @@ import SubmitButton from '../components/UI/SubmitButton'
 
 import { AuthContext } from '../context/AuthContext'
 
+import { SignUpContext } from '../context/SignUpContext'
+
 export default function WelcomeScreen ({ navigation }) {
+  const [signUpState] = useContext(SignUpContext)
   const [state, dispatch] = useContext(AuthContext)
   return (
     <View style={styles.container}>
@@ -22,6 +25,7 @@ export default function WelcomeScreen ({ navigation }) {
       <View style={{ flex: 1 }}>
         <SubmitButton
           onPress={() => {
+            console.log(signUpState)
             dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' })
           }}
         >

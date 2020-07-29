@@ -10,7 +10,7 @@ import { SignUpContext } from '../context/SignUpContext'
 export default function NameSignUpScreen ({ navigation }) {
   const [firstText, setFirstText] = useState('')
   const [secText, setSecText] = useState('')
-  const [state, dispatch] = useContext(SignUpContext)
+  const [signUpState, dispatch] = useContext(SignUpContext)
   return (
     <View>
       <BackArrow

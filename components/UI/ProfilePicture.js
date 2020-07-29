@@ -3,13 +3,23 @@ import { View, Image, StyleSheet } from 'react-native'
 
 const ProfilePicture = ({ size, pictureStyle, uri }) => {
   let image
-  if (size === 'small') {
+  if (size === 'x-small') {
+    image = (
+      <Image
+        style={styles.xSmall}
+        source={{
+          uri:
+            'https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
+        }}
+      />
+    )
+  } else if (size === 'small') {
     image = (
       <Image
         style={styles.small}
         source={{
           uri:
-            'https://avataaars.io/png?topType=LongHairStraight&hairColor=Brown&clotheType=Hoodie&skinColor=Light&avatarStyle=Circle'
+            'https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
         }}
       />
     )
@@ -27,6 +37,10 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
 }
 
 const styles = StyleSheet.create({
+  xSmall: {
+    width: 34.5,
+    height: 36.8
+  },
   small: {
     width: 60,
     height: 64

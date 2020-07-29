@@ -14,9 +14,7 @@ const MatchMessage = ({ onPressHandler }) => {
       <View style={style.container}>
         <ProfilePicture size='small' pictureStyle={style.picture} />
         <View style={style.innerContainer}>
-          <Text style={{ fontSize: 20, fontWeight: '500' }}>
-            Michelle Smith
-          </Text>
+          <Text style={{ fontSize: 20, fontWeight: '500' }}>Jimmy Johnson</Text>
           <Text style={{ marginTop: 5, color: 'grey' }}>
             The latest message
           </Text>
