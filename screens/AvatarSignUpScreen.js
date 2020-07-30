@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 20, marginLeft: 30, marginTop: 20 },
   test: {
     marginTop: 20,
-    marginBottom: 70
+    marginBottom: 60
   }
 })

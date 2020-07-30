@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Modal, View, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import {
+  Modal,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  Keyboard
+} from 'react-native'
 import MediumText from './MediumText'
 import StartButton from './StartButton'
 
@@ -10,7 +17,7 @@ import { Entypo } from '@expo/vector-icons'
 const ReportModal = ({ modalOpen, backHandler }) => {
   const [text, setText] = useState('')
   return (
-    <Modal visible={modalOpen}>
+    <Modal visible={modalOpen} animationType='slide'>
       <TouchableOpacity
         onPress={() => {
           backHandler()
@@ -32,12 +39,13 @@ const ReportModal = ({ modalOpen, backHandler }) => {
         <StartButton
           onPress={() => {
             Alert.alert(
-              'Report has been sent!',
+              'Report has been sent',
               '',
               [{ text: 'OK', onPress: () => backHandler() }],
               { cancelable: false }
             )
             setText('')
+            Keyboard.dismiss()
           }}
           title='Report User'
           style={{ backgroundColor: 'red' }}

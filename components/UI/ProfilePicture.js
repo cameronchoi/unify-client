@@ -6,6 +6,7 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
   if (size === 'x-small') {
     image = (
       <Image
+        defaultSource={require('../../assets/images/loading.png')}
         style={styles.xSmall}
         source={{
           uri:
@@ -16,6 +17,7 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
   } else if (size === 'small') {
     image = (
       <Image
+        defaultSource={require('../../assets/images/loading.png')}
         style={styles.small}
         source={{
           uri:
@@ -26,6 +28,7 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
   } else if (size === 'medium') {
     image = (
       <Image
+        defaultSource={require('../../assets/images/loading.png')}
         style={styles.medium}
         source={{
           uri: uri

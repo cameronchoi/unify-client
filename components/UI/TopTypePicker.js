@@ -22,7 +22,7 @@ const TopTypePicker = ({ topType, setTopType }) => {
         { label: 'Long Hair Not Too Long', value: 'LongHairNotTooLong' },
         { label: 'Long Hair Straight', value: 'LongHairStraight' },
         { label: 'Long Hair Straight 2', value: 'LongHairStraight2' },
-        { label: 'Long Hair Strand', value: 'LongHairStrand' },
+        { label: 'Long Hair Straight Strand', value: 'LongHairStraightStrand' },
         { label: 'Short Hair Dreads 1', value: 'ShortHairDreads01' },
         { label: 'Short Hair Dreads 2', value: 'ShortHairDreads02' },
         { label: 'Short Hair Frizzle', value: 'ShortHairFrizzle' },
