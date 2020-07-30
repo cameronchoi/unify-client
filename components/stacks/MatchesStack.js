@@ -1,4 +1,5 @@
 import React from 'react'
+import { Keyboard } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import AppTabsStack from './AppTabsStack'
@@ -30,7 +31,10 @@ const MatchesStack = () => {
         options={({ navigation }) => ({
           headerTitle: () => (
             <MessageProfile
-              onPressHandler={() => navigation.navigate('MatchProfile')}
+              onPressHandler={() => {
+                navigation.navigate('MatchProfile')
+                Keyboard.dismiss()
+              }}
               name='Jimmy Johnson'
             />
           )

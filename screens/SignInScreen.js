@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView, Alert } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import NormalText from '../components/UI/NormalText'
 import { TextInput } from 'react-native-paper'
@@ -15,33 +15,6 @@ const SignInScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const signIn = async (email, password) => {
-    setLoading(true)
-    const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          returnSecureToken: true
-        })
-      }
-    )
-
-    if (!response.ok) {
-      throw new Error('Something went wrong')
-    }
-
-    const resData = await response.json()
-    console.log(resData)
-    setLoading(false)
-    dispatch({ type: 'SIGN_IN', token: resData.idToken })
-  }
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -93,7 +66,37 @@ const SignInScreen = () => {
           </NormalText>
           <SubmitButton
             disabled={loading}
-            onPress={() => signIn(email, password)}
+            onPress={() => {
+              setLoading(true)
+              fetch(
+                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    returnSecureToken: true
+                  })
+                }
+              )
+                .then(res => res.json())
+                .then(resData => {
+                  setLoading(false)
+                  if (!resData.idToken) {
+                    console.log(resData.error)
+                    alert('Wrong email or password')
+                  } else {
+                    dispatch({ type: 'SIGN_IN', token: resData.idToken })
+                  }
+                })
+                .catch(err => {
+                  setLoading(false)
+                  console.log(err)
+                })
+            }}
           >
             Sign In
           </SubmitButton>

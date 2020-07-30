@@ -7,6 +7,7 @@ import ReportModal from '../components/UI/ReportModal'
 
 const MatchProfileScreen = () => {
   const [modalOpen, setModalOpen] = useState(false)
+
   return (
     <View style={styles.container}>
       <ReportModal
