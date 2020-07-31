@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { View, Switch, StyleSheet } from 'react-native'
 import NormalText from './NormalText'
+import Colours from '../../constants/colours'
 
 const MatchCriteria = props => {
   const [isEnabled, setIsEnabled] = useState(true)
@@ -10,13 +11,12 @@ const MatchCriteria = props => {
   }
   return (
     <View style={{ ...styles.container, ...props.style }}>
-      <View
-        style={{ flex: 1, justifyContent: 'flex-start', marginHorizontal: 37 }}
-      >
+      <View style={{ flex: 1, justifyContent: 'flex-start' }}>
         <NormalText style={props.textStyle}>{props.title}</NormalText>
       </View>
-      <View style={{ marginRight: 37 }}>
+      <View>
         <Switch
+          trackColor={{ true: Colours.primary, false: 'grey' }}
           switchStyle={props.switchStyle}
           onValueChange={toggleSwitch}
           value={isEnabled}

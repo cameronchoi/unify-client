@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from 'react-native'
 import ProfilePicture from './ProfilePicture'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 
-const MatchMessage = ({ onPressHandler }) => {
+const MatchMessage = ({ onPressHandler, uri, name, latestMessage }) => {
   return (
     <TouchableHighlight
       style={style.touchable}
@@ -12,12 +12,10 @@ const MatchMessage = ({ onPressHandler }) => {
       onPress={onPressHandler}
     >
       <View style={style.container}>
-        <ProfilePicture size='small' pictureStyle={style.picture} />
+        <ProfilePicture size='small' pictureStyle={style.picture} uri={uri} />
         <View style={style.innerContainer}>
-          <Text style={{ fontSize: 20, fontWeight: '500' }}>Jimmy Johnson</Text>
-          <Text style={{ marginTop: 5, color: 'grey' }}>
-            The latest message
-          </Text>
+          <Text style={{ fontSize: 20, fontWeight: '500' }}>{name}</Text>
+          <Text style={{ marginTop: 5, color: 'grey' }}>{latestMessage}</Text>
         </View>
       </View>
     </TouchableHighlight>
@@ -29,12 +27,12 @@ const style = StyleSheet.create({
     height: 90,
     width: '100%',
     flexDirection: 'row'
-    // borderBottomColor: 'grey',
-    // borderBottomWidth: 1
   },
   innerContainer: {
     flexDirection: 'column',
-    margin: 20
+    marginTop: 20,
+    marginLeft: 20,
+    width: 320
   },
   picture: {
     marginTop: 10,

@@ -31,30 +31,31 @@ export default function HomeScreen ({ navigation }) {
           textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
-          title='Match by subjects'
+          title='Match by subject'
           style={styles.criteria}
           textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
           title='Match by interests and personality'
-          style={styles.criteria}
+          style={styles.lastCriteria}
           textStyle={{ fontSize: 15 }}
         />
       </View>
+      <NormalText style={styles.matchText}>Press to find a match</NormalText>
       <TouchableOpacity
         activeOpacity={0.8}
         style={{ flex: 1, width: '100%', height: 400, alignItems: 'center' }}
         onPress={() => setModalOpen(true)}
       >
-        <Card style={{ width: '80%', height: 400, marginTop: 70 }}>
+        <Card style={styles.matchButton}>
           <FontAwesome5
-            style={{ marginBottom: 110, marginTop: 65 }}
+            style={{ marginTop: 70 }}
             name='user-friends'
             size={95}
             color='white'
           />
-          <NormalText style={{ fontSize: 23, color: 'white' }}>
-            Press to find a match
+          <NormalText style={{ color: 'white', fontSize: 70 }}>
+            unify
           </NormalText>
         </Card>
       </TouchableOpacity>
@@ -70,9 +71,15 @@ const styles = StyleSheet.create({
   criteria: {
     marginTop: 20
   },
+  lastCriteria: {
+    marginVertical: 20
+  },
   criteriaContainer: {
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 20,
+    width: '80%',
+    borderBottomColor: '#d3d3d3',
+    borderBottomWidth: 1
   },
   firstButton: {
     backgroundColor: Colours.primary,
@@ -82,5 +89,15 @@ const styles = StyleSheet.create({
     borderColor: Colours.primary,
     borderWidth: 1,
     marginVertical: 20
+  },
+  matchText: {
+    fontSize: 18,
+    color: 'black',
+    marginTop: 30
+  },
+  matchButton: {
+    width: '80%',
+    height: 400,
+    marginTop: 30
   }
 })

@@ -11,6 +11,16 @@ import { SignUpContext } from '../context/SignUpContext'
 export default function FriendSignUpScreen ({ navigation }) {
   const [signUpState, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
+  const [wordCount, setWordCount] = useState(0)
+
+  const getWordCount = text => {
+    const arr = text.split(' ')
+    if (arr[arr.length - 1] === '') {
+      return arr.length - 1
+    }
+    return arr.length
+  }
+
   return (
     <View>
       <BackArrow
@@ -22,17 +32,27 @@ export default function FriendSignUpScreen ({ navigation }) {
         What do you look for in a friend?
       </MediumText>
       <View style={{ alignItems: 'center' }}>
+        <View style={styles.topText}>
+          <NormalText style={{ fontSize: 12, color: '#a9a9a9' }}>
+            Please write at least 50 words. We will be using this to match you
+            to others with similar personalities and interests.
+          </NormalText>
+        </View>
         <MultiLineInput
           placeholder='What kind of qualities do you admire? What kind of values would your friend have? etc...'
-          onChangeText={text => setText(text)}
+          onChangeText={text => {
+            setText(text)
+            setWordCount(getWordCount(text))
+          }}
           value={text}
           style={styles.input}
         />
-        <View style={styles.bottomText}>
-          <NormalText style={{ fontSize: 12, color: '#a9a9a9' }}>
-            Please write at least 50 words. We will be using this to match you
-            to others with similar personalities and interests
-          </NormalText>
+        <View
+          style={{ alignSelf: 'flex-start', marginLeft: 40, marginBottom: 40 }}
+        >
+          <NormalText
+            style={{ fontSize: 12, color: '#a9a9a9' }}
+          >{`${wordCount}/50`}</NormalText>
         </View>
         <SubmitButton
           onPress={() => {
@@ -56,5 +76,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35,
     marginTop: 10,
     marginBottom: 50
+  },
+  topText: {
+    paddingHorizontal: 35,
+    marginTop: 10
   }
 })

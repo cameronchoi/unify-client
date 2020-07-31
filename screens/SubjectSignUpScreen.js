@@ -35,7 +35,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
         />
         <FlatList
           numColumns={2}
-          keyExtractor={item => item.subject}
+          keyExtractor={item => Math.random()}
           data={subjects}
           renderItem={({ item }) => (
             <View style={styles.subjectText}>
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     padding: 5,
     borderRadius: 5,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+    width: 90
   }
 })

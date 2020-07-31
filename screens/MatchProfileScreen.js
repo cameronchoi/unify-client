@@ -11,10 +11,10 @@ import Colours from '../constants/colours'
 const MatchProfileScreen = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [subjects, setSubjects] = useState([
-    'BUSS1000',
     'BUSS1020',
-    'BUSS1030',
-    'BUSS1040'
+    'BUSS2000',
+    'FINC2011',
+    'FINC2012'
   ])
 
   return (
@@ -55,7 +55,7 @@ const MatchProfileScreen = () => {
         }}
       >
         <NormalText style={{ fontSize: 16, marginBottom: 5, color: 'white' }}>
-          Bachelor of Arts
+          Bachelor of Commerce
         </NormalText>
       </View>
       <View
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     padding: 5,
     borderRadius: 5,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+    width: 90
   }
 })
 

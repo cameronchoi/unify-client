@@ -19,7 +19,7 @@ export default function UniYearSignUpScreen ({ navigation }) {
           navigation.goBack()
         }}
       />
-      <MediumText style={styles.title}>My am in...</MediumText>
+      <MediumText style={styles.title}>I am in...</MediumText>
       <View style={{ alignItems: 'center' }}>
         <DropDownPicker
           items={[

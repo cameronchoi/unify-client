@@ -20,8 +20,7 @@ const ProfilePicture = ({ size, pictureStyle, uri }) => {
         defaultSource={require('../../assets/images/loading.png')}
         style={styles.small}
         source={{
-          uri:
-            'https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
+          uri: uri
         }}
       />
     )

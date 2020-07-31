@@ -20,10 +20,10 @@ import { Card } from 'react-native-paper'
 export default function ProfileScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)
   const [modalOpen, setModalOpen] = useState(false)
-  const [topType, setTopType] = useState('LongHairStraight')
-  const [hairColour, setHairColour] = useState('Brown')
-  const [clotheType, setClotheType] = useState('Hoodie')
-  const [skinColour, setSkinColour] = useState('Light')
+  const [topType, setTopType] = useState('LongHairCurly')
+  const [hairColour, setHairColour] = useState('Black')
+  const [clotheType, setClotheType] = useState('BlazerShirt')
+  const [skinColour, setSkinColour] = useState('DarkBrown')
   const [subjects, setSubjects] = useState([
     'BUSS1000',
     'BUSS1020',
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     padding: 5,
     borderRadius: 5,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+    width: 90
   }
 })
