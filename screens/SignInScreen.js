@@ -67,36 +67,40 @@ const SignInScreen = () => {
           <SubmitButton
             disabled={loading}
             onPress={() => {
-              dispatch({ type: 'SIGN_IN', token: 'token' })
-              //   setLoading(true)
-              //   fetch(
-              //     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
-              //     {
-              //       method: 'POST',
-              //       headers: {
-              //         'Content-Type': 'application/json'
-              //       },
-              //       body: JSON.stringify({
-              //         email: email,
-              //         password: password,
-              //         returnSecureToken: true
-              //       })
-              //     }
-              //   )
-              //     .then(res => res.json())
-              //     .then(resData => {
-              //       setLoading(false)
-              //       if (!resData.idToken) {
-              //         console.log(resData.error)
-              //         alert('Wrong email or password')
-              //       } else {
-              //         dispatch({ type: 'SIGN_IN', token: resData.idToken })
-              //       }
-              //     })
-              //     .catch(err => {
-              //       setLoading(false)
-              //       console.log(err)
-              //     })
+              //   dispatch({ type: 'SIGN_IN', token: 'token' })
+              setLoading(true)
+              fetch(
+                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    returnSecureToken: true
+                  })
+                }
+              )
+                .then(res => res.json())
+                .then(resData => {
+                  setLoading(false)
+                  if (!resData.idToken) {
+                    console.log(resData.error)
+                    alert('Wrong email or password')
+                  } else {
+                    dispatch({
+                      type: 'SIGN_IN',
+                      token: resData.idToken,
+                      userId: resData.localId
+                    })
+                  }
+                })
+                .catch(err => {
+                  setLoading(false)
+                  console.log(err)
+                })
             }}
           >
             Sign In

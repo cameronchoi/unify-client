@@ -9,19 +9,22 @@ function reducer (prevState, action) {
       return {
         ...prevState,
         userToken: action.token,
+        userId: action.userId,
         isLoading: false
       }
     case 'SIGN_IN':
       return {
         ...prevState,
         isSignout: false,
-        userToken: action.token
+        userToken: action.token,
+        userId: action.userId
       }
     case 'SIGN_OUT':
       return {
         ...prevState,
         isSignout: true,
-        userToken: null
+        userToken: null,
+        userId: null
       }
   }
 }
@@ -30,7 +33,8 @@ export function AuthProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, {
     isLoading: true,
     isSignout: false,
-    userToken: null
+    userToken: null,
+    userId: null
   })
 
   useEffect(() => {
