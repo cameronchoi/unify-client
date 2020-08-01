@@ -34,7 +34,7 @@ export default function EmailSignUpScreen ({ navigation }) {
           onPress={() => {
             setLoading(true)
             fetch(
-              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user',
+              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/email',
               {
                 method: 'POST',
                 headers: {

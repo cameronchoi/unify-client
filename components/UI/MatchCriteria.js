@@ -5,9 +5,8 @@ import NormalText from './NormalText'
 import Colours from '../../constants/colours'
 
 const MatchCriteria = props => {
-  const [isEnabled, setIsEnabled] = useState(true)
   const toggleSwitch = () => {
-    setIsEnabled(previousState => !previousState)
+    props.setIsEnabled(previousState => !previousState)
   }
   return (
     <View style={{ ...styles.container, ...props.style }}>
@@ -19,7 +18,7 @@ const MatchCriteria = props => {
           trackColor={{ true: Colours.primary, false: 'grey' }}
           switchStyle={props.switchStyle}
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={props.isEnabled}
         />
       </View>
     </View>
