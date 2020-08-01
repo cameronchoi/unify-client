@@ -33,12 +33,14 @@ function reducer (prevState, action) {
     case 'DEGREE':
       return {
         ...prevState,
-        degree: action.degree
+        degreeId: action.degreeId,
+        degreeName: action.degreeName
       }
     case 'SUBJECTS':
       return {
         ...prevState,
-        subjects: action.subjects
+        subjectIds: action.subjectIds,
+        subjectCodes: action.subjectCodes
       }
     case 'DESCRIBE_SELF':
       return {
@@ -71,8 +73,10 @@ export const SignUpProvider = ({ children }) => {
     lastName: null,
     uniName: null,
     uniYear: 0,
-    degree: null,
-    subjects: [],
+    degreeName: null,
+    degreeId: null,
+    subjectIds: [],
+    subjectCodes: [],
     describeSelf: null,
     describeFriend: null,
     avatar: {

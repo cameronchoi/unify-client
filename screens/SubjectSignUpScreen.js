@@ -6,15 +6,57 @@ import MediumText from '../components/UI/MediumText'
 import BackArrow from '../components/UI/BackArrow'
 
 import { SignUpContext } from '../context/SignUpContext'
+import { ActivityIndicator } from 'react-native-paper'
 
 export default function SubjectSignUpScreen ({ navigation }) {
   const [signUpState, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
   const [subjects, setSubjects] = useState([])
+  const [subjectIds, setSubjectIds] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const onSubmitEditingHandler = () => {
-    setSubjects(currentSubjects => [...currentSubjects, text])
-    setText('')
+    setLoading(true)
+    fetch(
+      'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/subjects',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          subjectCode: text,
+          uniName: signUpState.uniName
+        })
+      }
+    )
+      .then(res => res.json())
+      .then(resData => {
+        if (resData.error) {
+          alert(resData.error)
+          setLoading(false)
+          setText('')
+        } else {
+          setSubjects(currentSubjects => [...currentSubjects, text])
+          setSubjectIds(currentSubjectIds => [
+            ...currentSubjectIds,
+            resData.subjectId
+          ])
+          setLoading(false)
+          setText('')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
   }
   return (
     <View>
@@ -46,7 +88,11 @@ export default function SubjectSignUpScreen ({ navigation }) {
         <SubmitButton
           style={styles.subjectButton}
           onPress={() => {
-            dispatch({ type: 'SUBJECTS', subjects: subjects })
+            dispatch({
+              type: 'SUBJECTS',
+              subjectCodes: subjects,
+              subjectIds: subjectIds
+            })
             navigation.navigate('PersonalSignUp')
           }}
         >

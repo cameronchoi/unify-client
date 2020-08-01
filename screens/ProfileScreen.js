@@ -16,7 +16,6 @@ import NormalText from '../components/UI/NormalText'
 import AvatarModal from '../components/UI/AvatarModal'
 import Colours from '../constants/colours'
 import StartButton from '../components/UI/StartButton'
-import { set } from 'react-native-reanimated'
 
 export default function ProfileScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)
@@ -34,20 +33,26 @@ export default function ProfileScreen ({ navigation }) {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`https://unify-40e9b.firebaseio.com/users/${state.userId}.json`)
+    fetch(
+      `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user`,
+      {
+        headers: {
+          Authorization: `Bearer ${state.userToken}`
+        }
+      }
+    )
       .then(res => res.json())
       .then(resData => {
-        for (const key in resData) {
-          setTopType(resData[key].avatar.topType)
-          setHairColour(resData[key].avatar.hairColour)
-          setClotheType(resData[key].avatar.clotheType)
-          setSkinColour(resData[key].avatar.skinColour)
-          setSubjects(resData[key].subjects)
-          setUniName(resData[key].uniName)
-          setDegree(resData[key].degree)
-          setFirstName(resData[key].firstName)
-          setLastName(resData[key].lastName)
-        }
+        setTopType(resData.avatar.topType)
+        setHairColour(resData.avatar.hairColour)
+        setClotheType(resData.avatar.clotheType)
+        setSkinColour(resData.avatar.skinColour)
+        setSubjects(resData.subjects.codes)
+        setUniName(resData.uniName)
+        setDegree(resData.degree.name)
+        setFirstName(resData.firstName)
+        setLastName(resData.lastName)
+
         setLoading(false)
       })
   }, [])

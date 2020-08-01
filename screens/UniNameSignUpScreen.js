@@ -10,6 +10,7 @@ import { SignUpContext } from '../context/SignUpContext'
 export default function UniNameSignUpScreen ({ navigation }) {
   const [text, setText] = useState('')
   const [signUpState, dispatch] = useContext(SignUpContext)
+  const [loading, setLoading] = useState(false)
   return (
     <View>
       <BackArrow
@@ -26,9 +27,35 @@ export default function UniNameSignUpScreen ({ navigation }) {
           style={styles.test}
         />
         <SubmitButton
+          loading={loading}
           onPress={() => {
-            dispatch({ type: 'UNI_NAME', uniName: text })
-            navigation.navigate('UniYearSignUp')
+            setLoading(true)
+            fetch(
+              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/uni',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  uniName: text
+                })
+              }
+            )
+              .then(res => res.json())
+              .then(resData => {
+                if (resData.error) {
+                  alert(resData.error)
+                  setLoading(false)
+                } else {
+                  dispatch({ type: 'UNI_NAME', uniName: text })
+                  setLoading(false)
+                  navigation.navigate('UniYearSignUp')
+                }
+              })
+              .catch(err => {
+                console.log(err)
+              })
           }}
         >
           Continue

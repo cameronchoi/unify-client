@@ -10,6 +10,7 @@ import { SignUpContext } from '../context/SignUpContext'
 export default function DegreeSignUpScreen ({ navigation }) {
   const [signUpState, dispatch] = useContext(SignUpContext)
   const [text, setText] = useState('')
+  const [loading, setLoading] = useState(false)
   return (
     <View>
       <BackArrow
@@ -26,9 +27,40 @@ export default function DegreeSignUpScreen ({ navigation }) {
           style={styles.test}
         />
         <SubmitButton
+          loading={loading}
           onPress={() => {
-            dispatch({ type: 'DEGREE', degree: text })
-            navigation.navigate('SubjectSignUp')
+            setLoading(true)
+            fetch(
+              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/degrees',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  degreeName: text,
+                  uniName: signUpState.uniName
+                })
+              }
+            )
+              .then(res => res.json())
+              .then(resData => {
+                if (resData.error) {
+                  alert(resData.error)
+                  setLoading(false)
+                } else {
+                  dispatch({
+                    type: 'DEGREE',
+                    degreeId: resData.degreeId,
+                    degreeName: text
+                  })
+                  setLoading(false)
+                  navigation.navigate('SubjectSignUp')
+                }
+              })
+              .catch(err => {
+                console.log(err)
+              })
           }}
         >
           Continue
