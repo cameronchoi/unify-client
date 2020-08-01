@@ -10,6 +10,10 @@ import Colours from '../constants/colours'
 
 export default function HomeScreen ({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [matchByDegree, setMatchByDegree] = useState(true)
+  const [matchBySubject, setMatchBySubject] = useState(true)
+  const [matchByPersonality, setMatchByPersonality] = useState(true)
+
   return (
     <View style={styles.container}>
       <MatchModal
@@ -26,16 +30,22 @@ export default function HomeScreen ({ navigation }) {
 
       <View style={styles.criteriaContainer}>
         <MatchCriteria
+          isEnabled={matchByDegree}
+          setIsEnabled={setMatchByDegree}
           title='Match by degree'
           style={styles.criteria}
           textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
+          isEnabled={matchBySubject}
+          setIsEnabled={setMatchBySubject}
           title='Match by subject'
           style={styles.criteria}
           textStyle={{ fontSize: 15 }}
         />
         <MatchCriteria
+          isEnabled={matchByPersonality}
+          setIsEnabled={setMatchByPersonality}
           title='Match by interests and personality'
           style={styles.lastCriteria}
           textStyle={{ fontSize: 15 }}

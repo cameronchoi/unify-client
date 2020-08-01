@@ -26,28 +26,47 @@ export default function WelcomeScreen ({ navigation }) {
       </View>
       <View style={{ flex: 1 }}>
         <SubmitButton
-          disabled={loading}
+          loading={loading}
           onPress={() => {
+            const data = {
+              email: signUpState.email,
+              password: signUpState.password,
+              firstName: signUpState.firstName,
+              lastName: signUpState.lastName,
+              uniName: signUpState.uniName,
+              uniYear: signUpState.uniYear,
+              degreeId: signUpState.degreeId,
+              degreeName: signUpState.degreeName,
+              subjectCodes: signUpState.subjectCodes,
+              subjectIds: signUpState.subjectIds,
+              describeSelf: signUpState.describeSelf,
+              describeFriend: signUpState.describeFriend,
+              topType: signUpState.avatar.topType,
+              hairColour: signUpState.avatar.hairColour,
+              clotheType: signUpState.avatar.clotheType,
+              skinColour: signUpState.avatar.skinColour
+            }
+            console.log(data)
             setLoading(true)
             fetch(
-              'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
+              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/signup',
               {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                  email: signUpState.email,
-                  password: signUpState.password,
-                  returnSecureToken: true
-                })
+                body: JSON.stringify(data)
               }
             )
               .then(res => res.json())
               .then(resData => {
                 console.log(resData)
                 setLoading(false)
-                dispatch({ type: 'SIGN_IN', token: resData.idToken })
+                dispatch({
+                  type: 'SIGN_IN',
+                  token: resData.token,
+                  email: resData.email
+                })
               })
               .catch(err => {
                 setLoading(false)

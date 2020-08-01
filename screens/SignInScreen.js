@@ -65,11 +65,12 @@ const SignInScreen = () => {
             forgot password?
           </NormalText>
           <SubmitButton
-            disabled={loading}
+            loading={loading}
             onPress={() => {
+              //   dispatch({ type: 'SIGN_IN', token: 'token' })
               setLoading(true)
               fetch(
-                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
+                'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/login',
                 {
                   method: 'POST',
                   headers: {
@@ -77,19 +78,22 @@ const SignInScreen = () => {
                   },
                   body: JSON.stringify({
                     email: email,
-                    password: password,
-                    returnSecureToken: true
+                    password: password
                   })
                 }
               )
                 .then(res => res.json())
                 .then(resData => {
                   setLoading(false)
-                  if (!resData.idToken) {
+                  if (!resData.token) {
                     console.log(resData.error)
                     alert('Wrong email or password')
                   } else {
-                    dispatch({ type: 'SIGN_IN', token: resData.idToken })
+                    dispatch({
+                      type: 'SIGN_IN',
+                      token: resData.token,
+                      email: resData.email
+                    })
                   }
                 })
                 .catch(err => {

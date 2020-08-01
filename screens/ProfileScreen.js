@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import {
   StyleSheet,
   View,
   Text,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native'
 
 import { AuthContext } from '../context/AuthContext'
@@ -15,21 +16,54 @@ import NormalText from '../components/UI/NormalText'
 import AvatarModal from '../components/UI/AvatarModal'
 import Colours from '../constants/colours'
 import StartButton from '../components/UI/StartButton'
-import { Card } from 'react-native-paper'
 
 export default function ProfileScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)
   const [modalOpen, setModalOpen] = useState(false)
-  const [topType, setTopType] = useState('LongHairCurly')
-  const [hairColour, setHairColour] = useState('Black')
-  const [clotheType, setClotheType] = useState('BlazerShirt')
-  const [skinColour, setSkinColour] = useState('DarkBrown')
-  const [subjects, setSubjects] = useState([
-    'BUSS1000',
-    'BUSS1020',
-    'BUSS1030',
-    'BUSS1040'
-  ])
+  const [topType, setTopType] = useState('')
+  const [hairColour, setHairColour] = useState('')
+  const [clotheType, setClotheType] = useState('')
+  const [skinColour, setSkinColour] = useState('')
+  const [subjects, setSubjects] = useState([])
+  const [uniName, setUniName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [degree, setDegree] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch(
+      `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user`,
+      {
+        headers: {
+          Authorization: `Bearer ${state.userToken}`
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(resData => {
+        setTopType(resData.avatar.topType)
+        setHairColour(resData.avatar.hairColour)
+        setClotheType(resData.avatar.clotheType)
+        setSkinColour(resData.avatar.skinColour)
+        setSubjects(resData.subjects.codes)
+        setUniName(resData.uniName)
+        setDegree(resData.degree.name)
+        setFirstName(resData.firstName)
+        setLastName(resData.lastName)
+
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -57,7 +91,7 @@ export default function ProfileScreen ({ navigation }) {
         />
       </TouchableOpacity>
       <MediumText style={{ fontSize: 20, marginBottom: 5 }}>
-        Michelle Smith
+        {`${firstName} ${lastName}`}
       </MediumText>
       <View
         style={{
@@ -70,7 +104,7 @@ export default function ProfileScreen ({ navigation }) {
         }}
       >
         <NormalText style={{ fontSize: 16, marginBottom: 5, color: 'white' }}>
-          University of Sydney
+          {uniName}
         </NormalText>
       </View>
       <View
@@ -84,7 +118,7 @@ export default function ProfileScreen ({ navigation }) {
         }}
       >
         <NormalText style={{ fontSize: 16, marginBottom: 5, color: 'white' }}>
-          Bachelor of Commerce
+          {degree}
         </NormalText>
       </View>
       <View
