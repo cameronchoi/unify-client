@@ -1,21 +1,68 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, FlatList, Text } from 'react-native'
+import React, { useState, useContext, useEffect } from 'react'
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  ActivityIndicator
+} from 'react-native'
 import ProfilePicture from '../components/UI/ProfilePicture'
 import MediumText from '../components/UI/MediumText'
 import NormalText from '../components/UI/NormalText'
 import StartButton from '../components/UI/StartButton'
 import ReportModal from '../components/UI/ReportModal'
 
+import { MatchContext } from '../context/MatchContext'
+
 import Colours from '../constants/colours'
 
 const MatchProfileScreen = () => {
   const [modalOpen, setModalOpen] = useState(false)
-  const [subjects, setSubjects] = useState([
-    'BUSS1020',
-    'BUSS2000',
-    'FINC2011',
-    'FINC2012'
-  ])
+  const [topType, setTopType] = useState('')
+  const [hairColour, setHairColour] = useState('')
+  const [clotheType, setClotheType] = useState('')
+  const [skinColour, setSkinColour] = useState('')
+  const [subjects, setSubjects] = useState([])
+  const [uniName, setUniName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [degree, setDegree] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [matchState] = useContext(MatchContext)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch(
+      `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user/${matchState.matchEmail}`
+    )
+      .then(res => res.json())
+      .then(resData => {
+        setTopType(resData.avatar.topType)
+        setHairColour(resData.avatar.hairColour)
+        setClotheType(resData.avatar.clotheType)
+        setSkinColour(resData.avatar.skinColour)
+        setSubjects(resData.subjects.codes)
+        setUniName(resData.uniName)
+        setDegree(resData.degree.name)
+        setFirstName(resData.firstName)
+        setLastName(resData.lastName)
+
+        setLoading(false)
+      })
+      .catch(err => {
+        console.log(err)
+        alert('Something wrong happened...')
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -26,10 +73,12 @@ const MatchProfileScreen = () => {
       <View style={styles.picture}>
         <ProfilePicture
           size='medium'
-          uri='https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
+          uri={`https://avataaars.io/png?topType=${topType}&hairColor=${hairColour}&clotheType=${clotheType}&skinColor=${skinColour}&avatarStyle=Circle`}
         />
       </View>
-      <MediumText style={{ fontSize: 20 }}>Jimmy Johnson</MediumText>
+      <MediumText
+        style={{ fontSize: 20 }}
+      >{`${firstName} ${lastName}`}</MediumText>
       <View
         style={{
           width: 300,
@@ -41,7 +90,7 @@ const MatchProfileScreen = () => {
         }}
       >
         <NormalText style={{ fontSize: 16, marginBottom: 5, color: 'white' }}>
-          University of Sydney
+          {uniName}
         </NormalText>
       </View>
       <View
@@ -55,7 +104,7 @@ const MatchProfileScreen = () => {
         }}
       >
         <NormalText style={{ fontSize: 16, marginBottom: 5, color: 'white' }}>
-          Bachelor of Commerce
+          {degree}
         </NormalText>
       </View>
       <View

@@ -13,7 +13,7 @@ import ProfilePicture from '../components/UI/ProfilePicture'
 import MediumText from '../components/UI/MediumText'
 import NormalText from '../components/UI/NormalText'
 
-import AvatarModal from '../components/UI/AvatarModal'
+import AvatarModal from '../components/UI/AvatarModalForProfile'
 import Colours from '../constants/colours'
 import StartButton from '../components/UI/StartButton'
 
@@ -53,6 +53,11 @@ export default function ProfileScreen ({ navigation }) {
         setFirstName(resData.firstName)
         setLastName(resData.lastName)
 
+        setLoading(false)
+      })
+      .catch(err => {
+        console.log(err)
+        alert('Something wrong happened...')
         setLoading(false)
       })
   }, [])

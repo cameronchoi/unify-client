@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Keyboard } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -8,10 +8,12 @@ import MatchProfileScreen from '../../screens/MatchProfileScreen'
 
 import Fonts from '../../constants/fonts'
 import MessageProfile from '../UI/MessageProfile'
+import { MatchContext } from '../../context/MatchContext'
 
 const Stack = createStackNavigator()
 
 const MatchesStack = () => {
+  const [matchContext] = useContext(MatchContext)
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -35,7 +37,8 @@ const MatchesStack = () => {
                 navigation.navigate('MatchProfile')
                 Keyboard.dismiss()
               }}
-              name='Jimmy Johnson'
+              uri={matchContext.uri}
+              name={matchContext.fullName}
             />
           )
         })}

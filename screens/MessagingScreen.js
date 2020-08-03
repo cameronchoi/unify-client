@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { SafeAreaView } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
+import { MatchContext } from '../context/MatchContext'
 
 export default function MessagingScreen () {
   const [messages, setMessages] = useState([])
+  const [matchState] = useContext(MatchContext)
   const chat = (
     <GiftedChat
       messages={messages}
