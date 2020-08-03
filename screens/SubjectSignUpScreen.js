@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
 import SubmitButton from '../components/UI/SubmitButton'
 import Input from '../components/UI/Input'
@@ -14,6 +14,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
   const [subjects, setSubjects] = useState([])
   const [subjectIds, setSubjectIds] = useState([])
   const [loading, setLoading] = useState(false)
+  const inputRef = useRef()
 
   const onSubmitEditingHandler = () => {
     setLoading(true)
@@ -36,6 +37,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
           alert(resData.error)
           setLoading(false)
           setText('')
+          inputRef.focus()
         } else {
           setSubjects(currentSubjects => [...currentSubjects, text])
           setSubjectIds(currentSubjectIds => [
@@ -44,6 +46,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
           ])
           setLoading(false)
           setText('')
+          inputRef.focus()
         }
       })
       .catch(err => {
@@ -68,6 +71,7 @@ export default function SubjectSignUpScreen ({ navigation }) {
       <MediumText style={styles.title}>My current subjects are...</MediumText>
       <View style={{ alignItems: 'center' }}>
         <Input
+          ref={inputRef}
           onChangeText={text => setText(text)}
           onSubmitEditing={onSubmitEditingHandler}
           autoCapitalize='characters'

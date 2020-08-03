@@ -51,6 +51,7 @@ export default function MatchesScreen ({ navigation }) {
     const fullName = `${matchInfo.firstName} ${matchInfo.lastName}`
     return (
       <MatchMessage
+        id={item.key}
         onPressHandler={onPressHandler}
         uri={uri}
         name={fullName}
@@ -61,8 +62,8 @@ export default function MatchesScreen ({ navigation }) {
     )
   }
 
-  const onPressHandler = (email, fullName, uri) => {
-    matchDispatch({ type: 'SET_MATCH', email, fullName, uri })
+  const onPressHandler = (email, fullName, uri, id) => {
+    matchDispatch({ type: 'SET_MATCH', email, fullName, uri, id })
     navigation.navigate('Messaging')
   }
 

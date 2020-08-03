@@ -10,14 +10,15 @@ const MatchMessage = ({
   name,
   latestMessage,
   email,
-  fullName
+  fullName,
+  id
 }) => {
   return (
     <TouchableHighlight
       style={style.touchable}
       underlayColor='#DCDCDC'
       onPress={() => {
-        onPressHandler(email, fullName, uri)
+        onPressHandler(email, fullName, uri, id)
       }}
     >
       <View style={style.container}>

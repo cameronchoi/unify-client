@@ -9,7 +9,8 @@ function reducer (prevState, action) {
         ...prevState,
         matchEmail: action.email,
         fullName: action.fullName,
-        uri: action.uri
+        uri: action.uri,
+        id: action.id
       }
   }
 }
@@ -18,7 +19,8 @@ export const MatchProvider = ({ children }) => {
   const [matchState, matchDispatch] = useReducer(reducer, {
     matchEmail: null,
     fullName: null,
-    uri: null
+    uri: null,
+    id: null
   })
 
   return (
