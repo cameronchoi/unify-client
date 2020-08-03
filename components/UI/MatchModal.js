@@ -8,7 +8,13 @@ import ProfilePicture from './ProfilePicture'
 
 import Colours from '../../constants/colours'
 
-const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
+const MatchModal = ({
+  modalOpen,
+  sendMessageHandler,
+  backHandler,
+  uri,
+  fullName
+}) => {
   return (
     <Modal visible={modalOpen} animationType='slide' transparent={true}>
       <View
@@ -25,14 +31,11 @@ const MatchModal = ({ modalOpen, sendMessageHandler, backHandler }) => {
         >
           You have matched with...
         </NormalText>
-        <ProfilePicture
-          size='medium'
-          uri='https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
-        />
+        <ProfilePicture size='medium' uri={uri} />
         <MediumText
           style={{ fontSize: 20, color: 'white', marginVertical: 20 }}
         >
-          Jimmy Johnson
+          {fullName}
         </MediumText>
         <StartButton
           textColour='white'

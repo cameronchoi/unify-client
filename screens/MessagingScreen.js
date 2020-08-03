@@ -23,7 +23,6 @@ const MessagingScreen = props => {
       measurementId: 'G-RLMF7QHTJR'
     })
   }
-  console.log(matchState.id)
   let fire1 = new RealFire(matchState.id)
 
   const parse = doc => {
@@ -60,24 +59,18 @@ const MessagingScreen = props => {
         messages={messages}
         onSend={messages => {
           let txt
-          console.log('----------------------------')
-          console.log(firebase.firestore.FieldValue.serverTimestamp())
-          console.log('----------------------------')
           for (let i = 0; i < messages.length; i++) {
             const { text, user } = messages[i]
             const message = {
               text,
               user,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp()
+              timestamp: firebase.firestore.Timestamp.now()
             }
-            fire1.db.set(
-              firebase.firestore.FieldValue.serverTimestamp(),
-              message
-            )
+            fire1.db.add(message)
             txt = text
           }
           fetch(
-            'http://localhost:5000/unify-40e9b/australia-southeast1/api/matches',
+            'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/matches',
             {
               method: 'PATCH',
               headers: {
@@ -85,8 +78,7 @@ const MessagingScreen = props => {
               },
               body: JSON.stringify({
                 id: matchState.id,
-                message: txt,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                message: txt
               })
             }
           )
