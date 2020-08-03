@@ -4,18 +4,30 @@ import { GiftedChat } from 'react-native-gifted-chat' // 0.3.0
 import { MatchContext } from '../context/MatchContext'
 import firebase from 'firebase'
 
-import Fire from '../firebase/Fire'
 import RealFire from '../firebase/RealFire'
 import { View } from 'react-native'
 
 const MessagingScreen = props => {
   const [messages, setMessages] = useState([])
   const [matchState] = useContext(MatchContext)
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyC34XSAkjcF9JBMptCC6WUwJ1eoToublw4',
+      authDomain: 'unify-40e9b.firebaseapp.com',
+      databaseURL: 'https://unify-40e9b.firebaseio.com',
+      projectId: 'unify-40e9b',
+      storageBucket: 'unify-40e9b.appspot.com',
+      messagingSenderId: '721861398339',
+      appId: '1:721861398339:web:3ee2cdb990e674a7cfe9f6',
+      measurementId: 'G-RLMF7QHTJR'
+    })
+  }
+  console.log(matchState.id)
   let fire1 = new RealFire(matchState.id)
 
   const parse = doc => {
     const { timestamp, text, user } = doc.data()
-    // const { key: _id } = doc.id
     const newTime = timestamp.toDate()
     const message = {
       _id: doc.id,
@@ -47,15 +59,40 @@ const MessagingScreen = props => {
       <GiftedChat
         messages={messages}
         onSend={messages => {
+          let txt
+          console.log('----------------------------')
+          console.log(firebase.firestore.FieldValue.serverTimestamp())
+          console.log('----------------------------')
           for (let i = 0; i < messages.length; i++) {
             const { text, user } = messages[i]
             const message = {
               text,
               user,
-              timestamp: firebase.firestore.Timestamp.now()
+              timestamp: firebase.firestore.FieldValue.serverTimestamp()
             }
-            fire1.db.add(message)
+            fire1.db.set(
+              firebase.firestore.FieldValue.serverTimestamp(),
+              message
+            )
+            txt = text
           }
+          fetch(
+            'http://localhost:5000/unify-40e9b/australia-southeast1/api/matches',
+            {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                id: matchState.id,
+                message: txt,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+              })
+            }
+          )
+            .then(res => res.json())
+            .then(resData => console.log(resData))
+            .catch(err => console.log(err))
         }}
         user={{
           _id: matchState.matchEmail,
@@ -68,47 +105,3 @@ const MessagingScreen = props => {
 }
 
 export default MessagingScreen
-
-// class Chat extends React.Component {
-//   state = {
-//     messages: []
-//   }
-
-//   get user () {
-//     return {
-//       _id: 1
-//     }
-//   }
-
-//   render () {
-//     return (
-//       <GiftedChat
-//         messages={this.state.messages}
-//         onSend={Fire.send}
-//         user={this.user}
-//       />
-//     )
-//   }
-
-//   componentDidMount () {
-//     console.log(this.state.messages)
-//     Fire.on(message => {
-//       console.log(message)
-//       this.setState(previousState => {
-//         // console.log('-----------')
-//         // console.log(previousState)
-//         // console.log('-----------')
-//         console.log(GiftedChat.append(previousState.messages, message))
-//         return {
-//           messages: GiftedChat.append(previousState.messages, message)
-//         }
-//       })
-//     })
-//     console.log(this.state.messages)
-//   }
-//   componentWillUnmount () {
-//     Fire.off()
-//   }
-// }
-
-// export default Chat

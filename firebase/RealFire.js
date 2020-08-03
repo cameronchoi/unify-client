@@ -7,7 +7,7 @@ class Fire {
       .collection('matches')
       .doc(id)
       .collection('messages')
-    this.init(id)
+    this.init()
   }
 
   init = () => {

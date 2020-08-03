@@ -13,31 +13,42 @@ import MediumText from '../components/UI/MediumText'
 import { AuthContext } from '../context/AuthContext'
 import { MatchContext } from '../context/MatchContext'
 
+import FireMatch from '../firebase/FireMatch'
+
 export default function MatchesScreen ({ navigation }) {
   const [state, dispatch] = useContext(AuthContext)
   const [matches, setMatches] = useState([])
   const [loading, setLoading] = useState(false)
   const [matchState, matchDispatch] = useContext(MatchContext)
 
+  const fire = new FireMatch(state.userEmail)
+
   useEffect(() => {
     setLoading(true)
-    fetch(
-      'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/matches',
-      {
-        headers: {
-          Authorization: `Bearer ${state.userToken}`
-        }
-      }
-    )
-      .then(res => res.json())
-      .then(resData => {
-        setMatches(resData.results)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.log(err)
-        setLoading(false)
-      })
+    // fetch(
+    //   'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/matches',
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${state.userToken}`
+    //     }
+    //   }
+    // )
+    //   .then(res => res.json())
+    //   .then(resData => {
+    //     setMatches(resData.results)
+    //     unsubscribe = fire.on(results => setMatches(results))
+    //     setLoading(false)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     setLoading(false)
+    //   })
+
+    let unsubscribe = fire.on(results => setMatches(results), setLoading)
+
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   const renderItemHandler = ({ item }) => {
