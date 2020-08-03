@@ -4,12 +4,22 @@ import { View, StyleSheet, Text } from 'react-native'
 import ProfilePicture from './ProfilePicture'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 
-const MatchMessage = ({ onPressHandler, uri, name, latestMessage }) => {
+const MatchMessage = ({
+  onPressHandler,
+  uri,
+  name,
+  latestMessage,
+  email,
+  fullName,
+  id
+}) => {
   return (
     <TouchableHighlight
       style={style.touchable}
       underlayColor='#DCDCDC'
-      onPress={onPressHandler}
+      onPress={() => {
+        onPressHandler(email, fullName, uri, id)
+      }}
     >
       <View style={style.container}>
         <ProfilePicture size='small' pictureStyle={style.picture} uri={uri} />

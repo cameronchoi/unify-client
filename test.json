@@ -1,0 +1,424 @@
+{
+  "result": {
+    "lastName": "Ten",
+    "degree": {
+      "id": "7RWMsZCNWQnKysJFF1hc",
+      "name": "Bachelor of Commerce"
+    },
+    "uniName": "University of Sydney",
+    "avatar": {
+      "hairColour": "Black",
+      "skinColour": "Black",
+      "topType": "Hat",
+      "clotheType": "BlazerShirt"
+    },
+    "matches": ["test1@email.com", "test2@email.com"],
+    "userId": "0b4DFfUonhhPkjE9No9ZKEbeIL23",
+    "watsonInsights": {
+      "warnings": [
+        {
+          "warning_id": "WORD_COUNT_MESSAGE",
+          "message": "There were 145 words in the input. We need a minimum of 600, preferably 1,200 or more, to compute statistically significant estimates"
+        }
+      ],
+      "personality": [
+        {
+          "significant": true,
+          "percentile": 0.9555441575538934,
+          "category": "personality",
+          "name": "Openness",
+          "trait_id": "big5_openness",
+          "children": [
+            {
+              "significant": true,
+              "percentile": 0.006499389819745516,
+              "trait_id": "facet_adventurousness",
+              "name": "Adventurousness",
+              "category": "personality"
+            },
+            {
+              "trait_id": "facet_artistic_interests",
+              "category": "personality",
+              "name": "Artistic interests",
+              "percentile": 0.33310415235603097,
+              "significant": true
+            },
+            {
+              "trait_id": "facet_emotionality",
+              "category": "personality",
+              "name": "Emotionality",
+              "percentile": 0.5283445173871884,
+              "significant": true
+            },
+            {
+              "significant": true,
+              "trait_id": "facet_imagination",
+              "category": "personality",
+              "name": "Imagination",
+              "percentile": 0.7991463705713854
+            },
+            {
+              "trait_id": "facet_intellect",
+              "name": "Intellect",
+              "significant": true,
+              "percentile": 0.9675087997706777,
+              "category": "personality"
+            },
+            {
+              "name": "Authority-challenging",
+              "trait_id": "facet_liberalism",
+              "percentile": 0.8129068292079737,
+              "significant": true,
+              "category": "personality"
+            }
+          ]
+        },
+        {
+          "significant": true,
+          "children": [
+            {
+              "name": "Achievement striving",
+              "percentile": 0.380812639382196,
+              "category": "personality",
+              "significant": true,
+              "trait_id": "facet_achievement_striving"
+            },
+            {
+              "significant": true,
+              "category": "personality",
+              "percentile": 0.8970429211818705,
+              "name": "Cautiousness",
+              "trait_id": "facet_cautiousness"
+            },
+            {
+              "significant": true,
+              "trait_id": "facet_dutifulness",
+              "percentile": 0.7456273382622108,
+              "name": "Dutifulness",
+              "category": "personality"
+            },
+            {
+              "percentile": 0.20236290449461097,
+              "name": "Orderliness",
+              "significant": true,
+              "trait_id": "facet_orderliness",
+              "category": "personality"
+            },
+            {
+              "trait_id": "facet_self_discipline",
+              "category": "personality",
+              "percentile": 0.07499219478873653,
+              "significant": true,
+              "name": "Self-discipline"
+            },
+            {
+              "name": "Self-efficacy",
+              "percentile": 0.3879330881160719,
+              "trait_id": "facet_self_efficacy",
+              "significant": true,
+              "category": "personality"
+            }
+          ],
+          "category": "personality",
+          "name": "Conscientiousness",
+          "percentile": 0.19937414179163637,
+          "trait_id": "big5_conscientiousness"
+        },
+        {
+          "trait_id": "big5_extraversion",
+          "significant": true,
+          "percentile": 0.043157637448031694,
+          "name": "Extraversion",
+          "children": [
+            {
+              "category": "personality",
+              "name": "Activity level",
+              "trait_id": "facet_activity_level",
+              "percentile": 0.17618144754289433,
+              "significant": true
+            },
+            {
+              "significant": true,
+              "percentile": 0.4154084482486896,
+              "trait_id": "facet_assertiveness",
+              "category": "personality",
+              "name": "Assertiveness"
+            },
+            {
+              "significant": true,
+              "trait_id": "facet_cheerfulness",
+              "category": "personality",
+              "name": "Cheerfulness",
+              "percentile": 0.013571995945746929
+            },
+            {
+              "category": "personality",
+              "name": "Excitement-seeking",
+              "significant": true,
+              "trait_id": "facet_excitement_seeking",
+              "percentile": 0.09827872237662677
+            },
+            {
+              "name": "Outgoing",
+              "percentile": 0.01223573610237949,
+              "significant": true,
+              "trait_id": "facet_friendliness",
+              "category": "personality"
+            },
+            {
+              "percentile": 0.003595127431787304,
+              "category": "personality",
+              "significant": true,
+              "name": "Gregariousness",
+              "trait_id": "facet_gregariousness"
+            }
+          ],
+          "category": "personality"
+        },
+        {
+          "category": "personality",
+          "percentile": 0.0436266661878818,
+          "trait_id": "big5_agreeableness",
+          "name": "Agreeableness",
+          "significant": true,
+          "children": [
+            {
+              "significant": true,
+              "trait_id": "facet_altruism",
+              "category": "personality",
+              "name": "Altruism",
+              "percentile": 0.7731066776301192
+            },
+            {
+              "trait_id": "facet_cooperation",
+              "category": "personality",
+              "percentile": 0.6808219451025995,
+              "name": "Cooperation",
+              "significant": true
+            },
+            {
+              "category": "personality",
+              "name": "Modesty",
+              "trait_id": "facet_modesty",
+              "significant": true,
+              "percentile": 0.7017019926718439
+            },
+            {
+              "percentile": 0.47521908308971184,
+              "name": "Uncompromising",
+              "trait_id": "facet_morality",
+              "category": "personality",
+              "significant": true
+            },
+            {
+              "percentile": 0.9929490706874204,
+              "significant": true,
+              "category": "personality",
+              "trait_id": "facet_sympathy",
+              "name": "Sympathy"
+            },
+            {
+              "category": "personality",
+              "percentile": 0.46460358754040654,
+              "significant": true,
+              "name": "Trust",
+              "trait_id": "facet_trust"
+            }
+          ]
+        },
+        {
+          "trait_id": "big5_neuroticism",
+          "name": "Emotional range",
+          "significant": true,
+          "category": "personality",
+          "percentile": 0.19440787522968622,
+          "children": [
+            {
+              "trait_id": "facet_anger",
+              "category": "personality",
+              "percentile": 0.3184319705231211,
+              "significant": true,
+              "name": "Fiery"
+            },
+            {
+              "name": "Prone to worry",
+              "category": "personality",
+              "percentile": 0.5123751032439653,
+              "trait_id": "facet_anxiety",
+              "significant": true
+            },
+            {
+              "category": "personality",
+              "name": "Melancholy",
+              "significant": true,
+              "trait_id": "facet_depression",
+              "percentile": 0.955772355301668
+            },
+            {
+              "trait_id": "facet_immoderation",
+              "significant": true,
+              "category": "personality",
+              "percentile": 0.6502701067474033,
+              "name": "Immoderation"
+            },
+            {
+              "significant": true,
+              "trait_id": "facet_self_consciousness",
+              "category": "personality",
+              "percentile": 0.8902813853098559,
+              "name": "Self-consciousness"
+            },
+            {
+              "name": "Susceptible to stress",
+              "category": "personality",
+              "trait_id": "facet_vulnerability",
+              "percentile": 0.4237971201205772,
+              "significant": true
+            }
+          ]
+        }
+      ],
+      "word_count": 145,
+      "needs": [
+        {
+          "name": "Challenge",
+          "significant": true,
+          "category": "needs",
+          "percentile": 0.002916999005928844,
+          "trait_id": "need_challenge"
+        },
+        {
+          "name": "Closeness",
+          "category": "needs",
+          "trait_id": "need_closeness",
+          "significant": true,
+          "percentile": 0.0466038266207765
+        },
+        {
+          "name": "Curiosity",
+          "percentile": 0.001703284257955462,
+          "significant": true,
+          "category": "needs",
+          "trait_id": "need_curiosity"
+        },
+        {
+          "percentile": 0.07751309325923667,
+          "trait_id": "need_excitement",
+          "category": "needs",
+          "name": "Excitement",
+          "significant": true
+        },
+        {
+          "category": "needs",
+          "trait_id": "need_harmony",
+          "percentile": 0.006198553688630037,
+          "name": "Harmony",
+          "significant": true
+        },
+        {
+          "significant": true,
+          "category": "needs",
+          "name": "Ideal",
+          "percentile": 0.0021678504581480462,
+          "trait_id": "need_ideal"
+        },
+        {
+          "name": "Liberty",
+          "category": "needs",
+          "percentile": 0.00035908684680696634,
+          "trait_id": "need_liberty",
+          "significant": true
+        },
+        {
+          "percentile": 0.010953720688120061,
+          "trait_id": "need_love",
+          "category": "needs",
+          "name": "Love",
+          "significant": true
+        },
+        {
+          "trait_id": "need_practicality",
+          "percentile": 0.03880120804189052,
+          "category": "needs",
+          "name": "Practicality",
+          "significant": true
+        },
+        {
+          "category": "needs",
+          "percentile": 0.0049574487531579,
+          "significant": true,
+          "trait_id": "need_self_expression",
+          "name": "Self-expression"
+        },
+        {
+          "category": "needs",
+          "percentile": 0.10096577819650288,
+          "name": "Stability",
+          "significant": true,
+          "trait_id": "need_stability"
+        },
+        {
+          "name": "Structure",
+          "trait_id": "need_structure",
+          "percentile": 0.285286833228561,
+          "significant": true,
+          "category": "needs"
+        }
+      ],
+      "word_count_message": "There were 145 words in the input. We need a minimum of 600, preferably 1,200 or more, to compute statistically significant estimates",
+      "processed_language": "en",
+      "values": [
+        {
+          "trait_id": "value_conservation",
+          "percentile": 0.05127806505020116,
+          "name": "Conservation",
+          "significant": true,
+          "category": "values"
+        },
+        {
+          "percentile": 0.12746674847965983,
+          "trait_id": "value_openness_to_change",
+          "name": "Openness to change",
+          "category": "values",
+          "significant": true
+        },
+        {
+          "name": "Hedonism",
+          "significant": true,
+          "trait_id": "value_hedonism",
+          "percentile": 0.051530298095812666,
+          "category": "values"
+        },
+        {
+          "significant": true,
+          "category": "values",
+          "trait_id": "value_self_enhancement",
+          "name": "Self-enhancement",
+          "percentile": 0.0013531661096556347
+        },
+        {
+          "name": "Self-transcendence",
+          "significant": true,
+          "category": "values",
+          "trait_id": "value_self_transcendence",
+          "percentile": 0.04651402027200441
+        }
+      ]
+    },
+    "firstName": "Test",
+    "uniYear": "4",
+    "createdAt": "2020-08-02T19:55:38.117Z",
+    "describeFriend": "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
+    "subjects": {
+      "ids": [
+        "U2TYJFkiwWkV3j57jjv3",
+        "u7CBrclxIdknkAPwE0gA",
+        "XOiXW1wk0cGa1Cz2LqRa",
+        "u7CBrclxIdknkAPwE0gA"
+      ],
+      "codes": ["BUSS1020", "BUSS1030", "BUSS1040", "BUSS1030"]
+    },
+    "email": "test10@email.com",
+    "describeSelf": "A long black shadow slid across the pavement near their feet and the five Venusians, very much startled, looked overhead. They were barely in time to see the huge gray form of the carnivore before it vanished behind a sign atop a nearby building which bore the mystifying information Pepsi-Cola."
+  }
+}

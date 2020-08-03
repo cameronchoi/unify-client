@@ -1,93 +1,70 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { StyleSheet, FlatList, View, Text, Button } from 'react-native'
+import {
+  StyleSheet,
+  FlatList,
+  View,
+  Text,
+  Button,
+  ActivityIndicator
+} from 'react-native'
 import MatchMessage from '../components/UI/MatchMessage'
 import MediumText from '../components/UI/MediumText'
 
 import { AuthContext } from '../context/AuthContext'
+import { MatchContext } from '../context/MatchContext'
+
+import FireMatch from '../firebase/FireMatch'
 
 export default function MatchesScreen ({ navigation }) {
-  //   const [matches, setMatches] = useState([
-  //     {
-  //       name: 'Jimmy Johnson',
-  //       latestMessage: 'How are you finding BUSS1020?',
-  //       uri:
-  //         'https://avataaars.io/png?topType=ShortHairTheCaesar&hairColor=Black&clotheType=BlazerSweater&skinColor=Pale&avatarStyle=Circle'
-  //     },
-  //     {
-  //       name: 'Alyssa Wong',
-  //       latestMessage: "You wouldn't believe what happened today...",
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=LongHairCurvy&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=ShirtCrewNeck&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Yellow'
-  //     },
-  //     {
-  //       name: 'Denzel Washington',
-  //       latestMessage: "I'm pulling an all nighter tonight",
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=ShortHairTheCaesarSidePart&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=Black&graphicType=Skull&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Black'
-  //     },
-  //     {
-  //       name: 'Timothy Lin',
-  //       latestMessage: 'Dude... this video is taking me so much time',
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Pink&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Yellow'
-  //     },
-
-  //     {
-  //       name: 'Halle Berry',
-  //       latestMessage: "Why weren't you at todays lecture???",
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=LongHairStraight2&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=BlazerShirt&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=DarkBrown'
-  //     },
-  //     {
-  //       name: 'Cameron Choi',
-  //       latestMessage: "I've been meaning to tell you something...",
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Tanned'
-  //     },
-  //     {
-  //       name: 'Jennifer Lawrence',
-  //       latestMessage: 'What did you get for question 8?',
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=LongHairFroBand&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=Overall&clotheColor=Gray01&graphicType=Skull&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale'
-  //     },
-  //     {
-  //       name: 'Robert De Niro',
-  //       latestMessage: "I think that it's okay for this semester",
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Blank&hairColor=SilverGray&facialHairType=Blank&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
-  //     },
-  //     {
-  //       name: 'Jackie Chan',
-  //       latestMessage: 'Hiyaaaaaaaaaaa!!! Karate chop',
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=ShortHairShaggyMullet&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=ShirtVNeck&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Yellow'
-  //     },
-
-  //     {
-  //       name: 'Ji-eun Lee',
-  //       latestMessage: 'What did you get up to today?',
-  //       uri:
-  //         'https://avataaars.io/png?avatarStyle=Circle&topType=LongHairBun&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=ShirtCrewNeck&clotheColor=Black&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale'
-  //     }
-  //   ])
   const [state, dispatch] = useContext(AuthContext)
   const [matches, setMatches] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [matchState, matchDispatch] = useContext(MatchContext)
+
+  const fire = new FireMatch(state.userEmail)
 
   useEffect(() => {
-    fetch(
-      'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/matches',
-      {
-        headers: {
-          Authorization: `Bearer ${state.userToken}`
-        }
-      }
-    )
-      .then(res => res.json())
-      .then(resData => {})
+    setLoading(true)
+    let unsubscribe = fire.on(results => setMatches(results), setLoading)
+
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
-  const onPressHandler = () => {
+  const renderItemHandler = ({ item }) => {
+    let matchInfo
+    if (item.match.userInfo.userOne.email !== state.userEmail) {
+      matchInfo = item.match.userInfo.userOne
+    } else {
+      matchInfo = item.match.userInfo.userTwo
+    }
+    const uri = `https://avataaars.io/png?topType=${matchInfo.avatar.topType}&hairColor=${matchInfo.avatar.hairColour}&clotheType=${matchInfo.avatar.clotheType}&skinColor=${matchInfo.avatar.skinColour}&avatarStyle=Circle`
+    const fullName = `${matchInfo.firstName} ${matchInfo.lastName}`
+    return (
+      <MatchMessage
+        id={item.key}
+        onPressHandler={onPressHandler}
+        uri={uri}
+        name={fullName}
+        email={matchInfo.email}
+        fullName={fullName}
+        latestMessage={item.match.latestMessage}
+      />
+    )
+  }
+
+  const onPressHandler = (email, fullName, uri, id) => {
+    matchDispatch({ type: 'SET_MATCH', email, fullName, uri, id })
     navigation.navigate('Messaging')
+  }
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
   }
 
   return (
@@ -103,18 +80,7 @@ export default function MatchesScreen ({ navigation }) {
           </MediumText>
         </View>
       ) : (
-        <FlatList
-          keyExtractor={item => item.name}
-          data={matches}
-          renderItem={({ item }) => (
-            <MatchMessage
-              onPressHandler={onPressHandler}
-              uri={item.uri}
-              name={item.name}
-              latestMessage={item.latestMessage}
-            />
-          )}
-        />
+        <FlatList data={matches} renderItem={renderItemHandler} />
       )}
     </View>
   )
