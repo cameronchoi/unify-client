@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import SubmitButton from '../components/UI/SubmitButton';
 import AutocompleteInput from '../components/UI/AutocompleteInput';
 import MediumText from '../components/UI/MediumText';
@@ -10,7 +10,6 @@ import { SignUpContext } from '../context/SignUpContext';
 export default function DegreeSignUpScreen({ navigation }) {
   const [degrees, setDegrees] = useState([]);
   const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
   const [signUpState, dispatch] = useContext(SignUpContext);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ export default function DegreeSignUpScreen({ navigation }) {
         let res = await fetch(
           `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/degrees?uniName=${signUpState.uniName}`
         );
-        data = await res.json();
+        const data = await res.json();
         if (data.error) {
           alert(data.error);
         } else {
@@ -58,9 +57,7 @@ export default function DegreeSignUpScreen({ navigation }) {
           placeholder='Degree Name'
           style={styles.test}
         />
-        <SubmitButton loading={loading} onPress={validateDegree}>
-          Continue
-        </SubmitButton>
+        <SubmitButton onPress={validateDegree}>Continue</SubmitButton>
       </View>
     </View>
   );

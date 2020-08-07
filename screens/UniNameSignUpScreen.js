@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import SubmitButton from '../components/UI/SubmitButton';
 import AutocompleteInput from '../components/UI/AutocompleteInput.js';
 import MediumText from '../components/UI/MediumText';
@@ -18,7 +18,7 @@ export default function UniNameSignUpScreen({ navigation }) {
         let res = await fetch(
           'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/uni'
         );
-        data = await res.json();
+        const data = await res.json();
         if (data.error) {
           alert(data.error);
         } else {
