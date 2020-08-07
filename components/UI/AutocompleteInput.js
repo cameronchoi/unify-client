@@ -10,21 +10,25 @@ const AutocompleteInput = ({
   onChangeText,
   placeholder,
   style,
+  ...props
 }) => {
   const [filteredData, setFilteredData] = useState(data);
   useEffect(() => {
     const filteredData = [];
-    for (name of data) {
+    for (const name of data) {
       const text = value.toLowerCase();
       if (name.toLowerCase().startsWith(text)) {
         filteredData.push(name);
+      }
+      if (filteredData.length == 5) {
+        break;
       }
     }
     setFilteredData(filteredData);
   }, [value]);
 
   return (
-    <View style={{ ...style, ...styles.view }}>
+    <View style={{ ...styles.view, ...style }}>
       <Autocomplete
         containerStyle={styles.container}
         inputContainerStyle={styles.inputContainer}
@@ -33,7 +37,7 @@ const AutocompleteInput = ({
         data={filteredData}
         defaultValue={value}
         onChangeText={onChangeText}
-        hideResults={data.includes(value)}
+        hideResults={data.includes(value) || value.length == 0}
         placeholder={placeholder}
         keyExtractor={(item, i) => i.toString()}
         renderItem={({ item, index }) => (
@@ -46,6 +50,7 @@ const AutocompleteInput = ({
             <Text style={styles.itemText}>{item}</Text>
           </TouchableOpacity>
         )}
+        {...props}
       />
     </View>
   );
