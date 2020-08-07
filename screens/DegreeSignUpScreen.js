@@ -33,7 +33,7 @@ export default function DegreeSignUpScreen({ navigation }) {
 
   const validateDegree = () => {
     for (let i = 0; i < degrees.length; i++) {
-      if (degrees[i].degreeName == text) {
+      if (degrees[i].degreeName === text) {
         dispatch({ type: 'DEGREE', degreeName: text, degreeId: degrees[i].id });
         return navigation.navigate('SubjectSignUp');
       }

@@ -1,92 +1,114 @@
-import React, { useState, useContext, useRef } from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native'
-import SubmitButton from '../components/UI/SubmitButton'
-import Input from '../components/UI/Input'
-import MediumText from '../components/UI/MediumText'
-import BackArrow from '../components/UI/BackArrow'
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import SubmitButton from '../components/UI/SubmitButton';
+import AutocompleteInput from '../components/UI/AutocompleteInput';
+import MediumText from '../components/UI/MediumText';
+import BackArrow from '../components/UI/BackArrow';
+import Colour from '../constants/colours';
 
-import { SignUpContext } from '../context/SignUpContext'
-import { ActivityIndicator } from 'react-native-paper'
+import { SignUpContext } from '../context/SignUpContext';
 
-export default function SubjectSignUpScreen ({ navigation }) {
-  const [signUpState, dispatch] = useContext(SignUpContext)
-  const [text, setText] = useState('')
-  const [subjects, setSubjects] = useState([])
-  const [subjectIds, setSubjectIds] = useState([])
-  const [loading, setLoading] = useState(false)
-  const inputRef = useRef()
+export default function SubjectSignUpScreen({ navigation }) {
+  const [signUpState, dispatch] = useContext(SignUpContext);
+  const [text, setText] = useState('');
+  const [allSubjects, setAllSubjects] = useState([]);
+  const [subjectCodes, setSubjectCodes] = useState([]);
+  const [subjectIds, setSubjectIds] = useState([]);
 
-  const onSubmitEditingHandler = () => {
-    setLoading(true)
-    fetch(
-      'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/subjects',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          subjectCode: text,
-          uniName: signUpState.uniName
-        })
-      }
-    )
-      .then(res => res.json())
-      .then(resData => {
-        if (resData.error) {
-          alert(resData.error)
-          setLoading(false)
-          setText('')
-          inputRef.focus()
+  useEffect(() => {
+    const getSubjects = async () => {
+      try {
+        let res = await fetch(
+          `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/subjects?uniName=${signUpState.uniName}`
+        );
+        const data = await res.json();
+        if (data.error) {
+          alert(data.error);
         } else {
-          setSubjects(currentSubjects => [...currentSubjects, text])
-          setSubjectIds(currentSubjectIds => [
-            ...currentSubjectIds,
-            resData.subjectId
-          ])
-          setLoading(false)
-          setText('')
-          inputRef.focus()
+          setAllSubjects(data);
         }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getSubjects();
+  }, []);
 
-  if (loading) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size='large' />
-      </View>
-    )
-  }
+  const addSubject = () => {
+    for (let i = 0; i < allSubjects.length; i++) {
+      if (allSubjects[i].subjectCode === text) {
+        if (subjectCodes.includes(text)) {
+          return alert('Subject has already been added.');
+        }
+        setSubjectCodes([...subjectCodes, text]);
+        setSubjectIds([...subjectIds, allSubjects[i].id]);
+        return setText('');
+      }
+    }
+    alert(`Not a valid subject name for ${signUpState.uniName}.`);
+  };
+
+  const removeSubject = (subjectCode) => {
+    const subject = allSubjects.find(
+      (subject) => subject.subjectCode === subjectCode
+    );
+    setSubjectCodes(subjectCodes.filter((code) => code !== subjectCode));
+    setSubjectIds(subjectIds.filter((id) => id !== subject.id));
+  };
+
   return (
     <View>
       <BackArrow
         onPress={() => {
-          navigation.goBack()
+          navigation.goBack();
         }}
       />
       <MediumText style={styles.title}>My current subjects are...</MediumText>
+      <View style={styles.inputContainer}>
+        <View style={{ flex: 4 }}>
+          <AutocompleteInput
+            autoFocus={true}
+            data={allSubjects.map((subject) => subject.subjectCode)}
+            onChangeText={(text) => setText(text.toUpperCase())}
+            value={text}
+            placeholder='Subject Code'
+            onSubmitEditing={addSubject}
+            style={styles.test}
+          />
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <TouchableOpacity style={styles.addButton} onPress={addSubject}>
+            <Text style={{ fontSize: 20, color: 'white' }}>+</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <View style={{ alignItems: 'center' }}>
-        <Input
-          ref={inputRef}
-          onChangeText={text => setText(text)}
-          onSubmitEditing={onSubmitEditingHandler}
-          autoCapitalize='characters'
-          value={text}
-          placeholder='Subject Code'
-          style={styles.test}
-        />
         <FlatList
           numColumns={2}
-          keyExtractor={item => Math.random()}
-          data={subjects}
+          keyExtractor={(item, i) => i.toString()}
+          data={subjectCodes}
           renderItem={({ item }) => (
-            <View style={styles.subjectText}>
-              <Text>{item}</Text>
-            </View>
+            <TouchableOpacity
+              style={styles.subjectText}
+              onPress={() => removeSubject(item)}
+            >
+              <Text style={{ flex: 5 }}>{item}</Text>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Text style={{ fontWeight: 'bold' }}>×</Text>
+              </View>
+            </TouchableOpacity>
           )}
         />
         <SubmitButton
@@ -94,36 +116,52 @@ export default function SubjectSignUpScreen ({ navigation }) {
           onPress={() => {
             dispatch({
               type: 'SUBJECTS',
-              subjectCodes: subjects,
-              subjectIds: subjectIds
-            })
-            navigation.navigate('PersonalSignUp')
+              subjectCodes,
+              subjectIds,
+            });
+            navigation.navigate('PersonalSignUp');
           }}
         >
           Continue
         </SubmitButton>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   title: { fontSize: 20, marginLeft: 30, marginTop: 20 },
+  inputContainer: {
+    width: '85%',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    zIndex: 1,
+  },
   test: {
+    width: '100%',
     marginTop: 40,
-    marginBottom: 35
+    marginBottom: 35,
+  },
+  addButton: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: Colour.primary,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   subjectButton: {
-    marginTop: 35
+    marginTop: 35,
   },
   subjectText: {
-    alignItems: 'center',
+    flexDirection: 'row',
     borderWidth: 1,
     borderColor: 'black',
     marginVertical: 3,
     padding: 5,
     borderRadius: 5,
     marginHorizontal: 30,
-    width: 90
-  }
-})
+    width: 100,
+  },
+});
