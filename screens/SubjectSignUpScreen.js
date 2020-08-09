@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import {
   Platform,
   StyleSheet,
@@ -6,18 +6,18 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-} from 'react-native';
-import SubmitButton from '../components/UI/SubmitButton';
-import AutocompleteInput from '../components/UI/AutocompleteInput';
-import MediumText from '../components/UI/MediumText';
-import BackArrow from '../components/UI/BackArrow';
-import Colour from '../constants/colours';
+} from "react-native";
+import SubmitButton from "../components/UI/SubmitButton";
+import AutocompleteInput from "../components/UI/AutocompleteInput";
+import MediumText from "../components/UI/MediumText";
+import BackArrow from "../components/UI/BackArrow";
+import Colour from "../constants/colours";
 
-import { SignUpContext } from '../context/SignUpContext';
+import { SignUpContext } from "../context/SignUpContext";
 
 export default function SubjectSignUpScreen({ navigation }) {
   const [signUpState, dispatch] = useContext(SignUpContext);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [allSubjects, setAllSubjects] = useState([]);
   const [subjectCodes, setSubjectCodes] = useState([]);
   const [subjectIds, setSubjectIds] = useState([]);
@@ -45,11 +45,11 @@ export default function SubjectSignUpScreen({ navigation }) {
     for (let i = 0; i < allSubjects.length; i++) {
       if (allSubjects[i].subjectCode === text) {
         if (subjectCodes.includes(text)) {
-          return alert('Subject has already been added.');
+          return alert("Subject has already been added.");
         }
         setSubjectCodes([...subjectCodes, text]);
         setSubjectIds([...subjectIds, allSubjects[i].id]);
-        return setText('');
+        return setText("");
       }
     }
     alert(`Not a valid subject name for ${signUpState.uniName}.`);
@@ -64,17 +64,17 @@ export default function SubjectSignUpScreen({ navigation }) {
   };
 
   let inputContainerStyle = {
-    alignSelf: 'center',
-    alignItems: 'center',
-    width: '85%',
-    flexDirection: 'row',
+    alignSelf: "center",
+    alignItems: "center",
+    width: "85%",
+    flexDirection: "row",
   };
-  let autocompleteStyle = { width: '100%' };
-  if (Platform.OS == 'ios') {
+  let autocompleteStyle = { width: "100%" };
+  if (Platform.OS == "ios") {
     inputContainerStyle.zIndex = 1;
     autocompleteStyle.marginTop = 40;
     autocompleteStyle.marginBottom = 35;
-  } else if (Platform.OS == 'android') {
+  } else if (Platform.OS == "android") {
     inputContainerStyle.marginTop = 20;
     inputContainerStyle.marginBottom = 35;
     autocompleteStyle.zIndex = 1;
@@ -90,14 +90,14 @@ export default function SubjectSignUpScreen({ navigation }) {
             data={allSubjects.map((subject) => subject.subjectCode)}
             onChangeText={(text) => setText(text.toUpperCase())}
             value={text}
-            placeholder='Subject Code'
+            placeholder="Subject Code"
             onSubmitEditing={addSubject}
             style={autocompleteStyle}
           />
         </View>
         <View style={styles.addButtonContainer}>
           <TouchableOpacity style={styles.addButton} onPress={addSubject}>
-            <Text style={{ fontSize: 20, color: 'white' }}>+</Text>
+            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -115,11 +115,11 @@ export default function SubjectSignUpScreen({ navigation }) {
               <View
                 style={{
                   flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Text style={{ fontWeight: 'bold' }}>×</Text>
+                <Text style={{ fontWeight: "bold" }}>×</Text>
               </View>
             </TouchableOpacity>
           )}
@@ -127,12 +127,16 @@ export default function SubjectSignUpScreen({ navigation }) {
         <SubmitButton
           style={styles.subjectButton}
           onPress={() => {
-            dispatch({
-              type: 'SUBJECTS',
-              subjectCodes,
-              subjectIds,
-            });
-            navigation.navigate('PersonalSignUp');
+            if (subjectIds.length < 3 || subjectIds.length > 5) {
+              alert("Please input between 3 to 5 subjects");
+            } else {
+              dispatch({
+                type: "SUBJECTS",
+                subjectCodes,
+                subjectIds,
+              });
+              navigation.navigate("PersonalSignUp");
+            }
           }}
         >
           Continue
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 20, marginLeft: 30, marginTop: 20 },
   addButtonContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingTop: Platform.select({ ios: 0, android: 20 }),
   },
   addButton: {
@@ -154,21 +158,21 @@ const styles = StyleSheet.create({
     width: 40,
     borderRadius: 20,
     backgroundColor: Colour.primary,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   bottomContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     zIndex: 0,
   },
   subjectButton: {
     marginTop: 35,
   },
   subjectText: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
     marginVertical: 3,
     padding: 5,
     borderRadius: 5,
