@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   picture: {
-    marginBottom: 20,
+    marginVertical: 20,
   },
   subjectText: {
     alignItems: "center",

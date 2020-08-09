@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import NormalText from "../components/UI/NormalText";
 import { TextInput } from "react-native-paper";
@@ -17,7 +17,10 @@ const SignInScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+    >
       <View style={{ flex: 1 }}>
         <View style={styles.upperScreen}>
           <View style={styles.arrowContainer}>

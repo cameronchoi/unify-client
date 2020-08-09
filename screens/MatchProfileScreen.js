@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   picture: {
-    marginBottom: 20,
+    marginVertical: 20,
   },
   subjectText: {
     alignItems: "center",
