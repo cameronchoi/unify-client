@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import * as React from "react";
+import { TextInput, StyleSheet } from "react-native";
 
-import Fonts from '../../constants/fonts'
+import Fonts from "../../constants/fonts";
 
-const MultiLineInput = props => {
+const MultiLineInput = (props) => {
   return (
     <TextInput
       {...props}
@@ -11,20 +11,21 @@ const MultiLineInput = props => {
       multiline={true}
       numberOfLines={4}
     />
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   input: {
-    width: '85%',
+    width: "85%",
     height: 150,
     padding: 5,
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     borderRadius: 5,
     fontSize: 14,
-    fontFamily: Fonts.normal
-  }
-})
+    fontFamily: Fonts.normal,
+    textAlignVertical: "top",
+  },
+});
 
-export default MultiLineInput
+export default MultiLineInput;
