@@ -1,64 +1,61 @@
-import React, { useContext, useState } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
-import NormalText from '../components/UI/NormalText';
-import { TextInput } from 'react-native-paper';
-import SubmitButton from '../components/UI/SubmitButton';
-import BackArrow from '../components/UI/BackArrow';
+import React, { useContext, useState } from "react";
+import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
+import NormalText from "../components/UI/NormalText";
+import { TextInput } from "react-native-paper";
+import SubmitButton from "../components/UI/SubmitButton";
+import BackArrow from "../components/UI/BackArrow";
 
-import Colours from '../constants/colours';
+import Colours from "../constants/colours";
 
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from "../context/AuthContext";
 
 const SignInScreen = ({ navigation }) => {
   const [state, dispatch] = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior='padding'>
+    <KeyboardAvoidingView style={styles.container} behavior="height">
       <View style={{ flex: 1 }}>
         <View style={styles.upperScreen}>
           <View style={styles.arrowContainer}>
             <BackArrow
               style={styles.backArrow}
               onPress={navigation.goBack}
-              color='white'
+              color="white"
             />
           </View>
-          <FontAwesome5
-            style={{ marginTop: 20 }}
-            name='user-friends'
-            size={70}
-            color='white'
-          />
-          <NormalText style={{ color: 'white', fontSize: 47 }}>
-            unify
-          </NormalText>
+          <View style={{ alignItems: "center", marginTop: 20 }}>
+            <FontAwesome5 name="user-friends" size={70} color="white" />
+            <NormalText style={{ color: "white", fontSize: 47 }}>
+              unify
+            </NormalText>
+          </View>
         </View>
         <View style={styles.lowerScreen}>
           <TextInput
             onChangeText={(email) => setEmail(email)}
             value={email}
-            placeholder='Email Address'
-            autoCapitalize='none'
-            keyboardType='email-address'
-            mode='outlined'
+            placeholder="Email Address"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            mode="outlined"
             style={[styles.input, styles.firstInput]}
           />
           <TextInput
             onChangeText={(password) => setPassword(password)}
             value={password}
-            placeholder='Password'
-            autoCapitalize='none'
+            placeholder="Password"
+            autoCapitalize="none"
             secureTextEntry={true}
-            mode='outlined'
+            mode="outlined"
             style={styles.input}
           />
           <NormalText
             style={{
-              color: 'grey',
+              color: "grey",
               fontSize: 12,
               marginBottom: 50,
               marginTop: 12,
@@ -73,11 +70,11 @@ const SignInScreen = ({ navigation }) => {
               //   dispatch({ type: 'SIGN_IN', token: 'token' })
               setLoading(true);
               fetch(
-                'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/login',
+                "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/login",
                 {
-                  method: 'POST',
+                  method: "POST",
                   headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                   },
                   body: JSON.stringify({
                     email: email,
@@ -90,10 +87,10 @@ const SignInScreen = ({ navigation }) => {
                   setLoading(false);
                   if (!resData.token) {
                     console.log(resData.error);
-                    alert('Wrong email or password');
+                    alert("Wrong email or password");
                   } else {
                     dispatch({
-                      type: 'SIGN_IN',
+                      type: "SIGN_IN",
                       token: resData.token,
                       email: resData.email,
                     });
@@ -118,9 +115,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   arrowContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
-    width: '100%',
+    width: "100%",
   },
   backArrow: {
     marginLeft: 25,
@@ -129,20 +126,20 @@ const styles = StyleSheet.create({
   upperScreen: {
     flex: 3,
     backgroundColor: Colours.primary,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   lowerScreen: {
     flex: 4,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
   logo: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   input: {
-    width: '70%',
+    width: "70%",
   },
   firstInput: {
     marginTop: 90,
