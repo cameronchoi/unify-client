@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { Platform, StyleSheet, View, Text, Button } from 'react-native';
 import SubmitButton from '../components/UI/SubmitButton';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MediumText from '../components/UI/MediumText';
@@ -12,6 +12,14 @@ import Fonts from '../constants/fonts';
 export default function UniYearSignUpScreen({ navigation }) {
   const [signUpState, dispatch] = useContext(SignUpContext);
   const [year, setYear] = useState(null);
+  const onSubmit = () => {
+    if (!year) {
+      return alert('Please select your year in university.');
+    }
+    dispatch({ type: 'UNI_YEAR', uniYear: year });
+    navigation.navigate('DegreeSignUp');
+  };
+
   return (
     <View>
       <BackArrow
@@ -62,17 +70,13 @@ export default function UniYearSignUpScreen({ navigation }) {
           }}
           labelStyle={{ fontFamily: Fonts.normal }}
         />
-        <SubmitButton
-          onPress={() => {
-            if (!year) {
-              return alert('Please select your year in university.');
-            }
-            dispatch({ type: 'UNI_YEAR', uniYear: year });
-            navigation.navigate('DegreeSignUp');
-          }}
-        >
-          Continue
-        </SubmitButton>
+        {Platform.OS == 'android' ? (
+          <View style={styles.submitContainer}>
+            <SubmitButton onPress={onSubmit}>Continue</SubmitButton>
+          </View>
+        ) : (
+          <SubmitButton onPress={onSubmit}>Continue</SubmitButton>
+        )}
       </View>
     </View>
   );
@@ -83,5 +87,10 @@ const styles = StyleSheet.create({
   test: {
     marginTop: 40,
     marginBottom: 70,
+  },
+  submitContainer: {
+    alignItems: 'center',
+    width: '100%',
+    zIndex: 0,
   },
 });

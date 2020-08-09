@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import {
+  Platform,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 
 import Fonts from '../../constants/fonts';
@@ -27,8 +33,13 @@ const AutocompleteInput = ({
     setFilteredData(filteredData);
   }, [value]);
 
+  const viewStyle = Platform.select({
+    android: styles.androidView,
+    ios: styles.iosView,
+  });
+
   return (
-    <View style={{ ...styles.view, ...style }}>
+    <View style={{ ...viewStyle, ...style }}>
       <Autocomplete
         containerStyle={styles.container}
         inputContainerStyle={styles.inputContainer}
@@ -57,8 +68,13 @@ const AutocompleteInput = ({
 };
 
 const styles = StyleSheet.create({
-  view: {
+  iosView: {
     height: 30,
+    width: '85%',
+    zIndex: 1,
+  },
+  androidView: {
+    position: 'absolute',
     width: '85%',
     zIndex: 1,
   },

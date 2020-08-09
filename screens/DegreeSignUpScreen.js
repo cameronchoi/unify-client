@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import SubmitButton from '../components/UI/SubmitButton';
 import AutocompleteInput from '../components/UI/AutocompleteInput';
 import MediumText from '../components/UI/MediumText';
@@ -57,7 +57,13 @@ export default function DegreeSignUpScreen({ navigation }) {
           placeholder='Degree Name'
           style={styles.test}
         />
-        <SubmitButton onPress={validateDegree}>Continue</SubmitButton>
+        {Platform.OS == 'android' ? (
+          <View style={styles.submitContainer}>
+            <SubmitButton onPress={validateDegree}>Continue</SubmitButton>
+          </View>
+        ) : (
+          <SubmitButton onPress={validateDegree}>Continue</SubmitButton>
+        )}
       </View>
     </View>
   );
@@ -68,5 +74,11 @@ const styles = StyleSheet.create({
   test: {
     marginTop: 40,
     marginBottom: 70,
+  },
+  submitContainer: {
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 140,
+    zIndex: 0,
   },
 });

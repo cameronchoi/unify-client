@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {
+  Platform,
   StyleSheet,
   View,
   Text,
@@ -62,33 +63,45 @@ export default function SubjectSignUpScreen({ navigation }) {
     setSubjectIds(subjectIds.filter((id) => id !== subject.id));
   };
 
+  let inputContainerStyle = {
+    alignSelf: 'center',
+    alignItems: 'center',
+    width: '85%',
+    flexDirection: 'row',
+  };
+  let autocompleteStyle = { width: '100%' };
+  if (Platform.OS == 'ios') {
+    inputContainerStyle.zIndex = 1;
+    autocompleteStyle.marginTop = 40;
+    autocompleteStyle.marginBottom = 35;
+  } else if (Platform.OS == 'android') {
+    inputContainerStyle.marginTop = 20;
+    inputContainerStyle.marginBottom = 35;
+    autocompleteStyle.zIndex = 1;
+  }
+
   return (
     <View>
-      <BackArrow
-        onPress={() => {
-          navigation.goBack();
-        }}
-      />
+      <BackArrow onPress={navigation.goBack} />
       <MediumText style={styles.title}>My current subjects are...</MediumText>
-      <View style={styles.inputContainer}>
+      <View style={inputContainerStyle}>
         <View style={{ flex: 4 }}>
           <AutocompleteInput
-            autoFocus={true}
             data={allSubjects.map((subject) => subject.subjectCode)}
             onChangeText={(text) => setText(text.toUpperCase())}
             value={text}
             placeholder='Subject Code'
             onSubmitEditing={addSubject}
-            style={styles.test}
+            style={autocompleteStyle}
           />
         </View>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={styles.addButtonContainer}>
           <TouchableOpacity style={styles.addButton} onPress={addSubject}>
             <Text style={{ fontSize: 20, color: 'white' }}>+</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ alignItems: 'center' }}>
+      <View style={styles.bottomContainer}>
         <FlatList
           numColumns={2}
           keyExtractor={(item, i) => i.toString()}
@@ -131,16 +144,10 @@ export default function SubjectSignUpScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   title: { fontSize: 20, marginLeft: 30, marginTop: 20 },
-  inputContainer: {
-    width: '85%',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    zIndex: 1,
-  },
-  test: {
-    width: '100%',
-    marginTop: 40,
-    marginBottom: 35,
+  addButtonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Platform.select({ ios: 0, android: 20 }),
   },
   addButton: {
     height: 40,
@@ -150,6 +157,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bottomContainer: {
+    alignItems: 'center',
+    zIndex: 0,
   },
   subjectButton: {
     marginTop: 35,
