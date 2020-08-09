@@ -72,7 +72,7 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <ScrollView
+    <View
       style={styles.container}
       contentContainerStyle={{ alignItems: "center" }}
     >
@@ -173,14 +173,14 @@ export default function ProfileScreen({ navigation }) {
         }}
         textColour="white"
       />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: "center",
+    alignItems: "center",
   },
   picture: {
     marginVertical: 20,

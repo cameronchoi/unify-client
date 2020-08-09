@@ -1,60 +1,61 @@
-import React, { useContext } from 'react'
-import { Keyboard } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack'
+import React, { useContext } from "react";
+import { Keyboard } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import AppTabsStack from './AppTabsStack'
-import MessagingScreen from '../../screens/MessagingScreen'
-import MatchProfileScreen from '../../screens/MatchProfileScreen'
+import AppTabsStack from "./AppTabsStack";
+import MessagingScreen from "../../screens/MessagingScreen";
+import MatchProfileScreen from "../../screens/MatchProfileScreen";
 
-import Fonts from '../../constants/fonts'
-import MessageProfile from '../UI/MessageProfile'
-import { MatchContext } from '../../context/MatchContext'
+import Fonts from "../../constants/fonts";
+import MessageProfile from "../UI/MessageProfile";
+import { MatchContext } from "../../context/MatchContext";
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
 const MatchesStack = () => {
-  const [matchContext] = useContext(MatchContext)
+  const [matchContext] = useContext(MatchContext);
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name='Home'
+        name="Home"
         component={AppTabsStack}
         options={{
-          title: 'unify',
+          title: "unify",
           headerTitleStyle: {
             fontFamily: Fonts.normal,
-            fontSize: 20
-          }
+            fontSize: 20,
+          },
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
-        name='Messaging'
+        name="Messaging"
         component={MessagingScreen}
         options={({ navigation }) => ({
           headerTitle: () => (
             <MessageProfile
               onPressHandler={() => {
-                navigation.navigate('MatchProfile')
-                Keyboard.dismiss()
+                navigation.navigate("MatchProfile");
+                Keyboard.dismiss();
               }}
               uri={matchContext.uri}
               name={matchContext.fullName}
             />
-          )
+          ),
         })}
       />
       <Stack.Screen
-        name='MatchProfile'
+        name="MatchProfile"
         component={MatchProfileScreen}
         options={{
-          title: '         ',
+          title: "         ",
           headerTitleStyle: {
-            color: 'white'
-          }
+            color: "white",
+          },
         }}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-export default MatchesStack
+export default MatchesStack;
