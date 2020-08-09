@@ -1,24 +1,24 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
-const BackArrow = props => {
+const BackArrow = (props) => {
   return (
     <AntDesign
-      {...props}
       style={styles.arrow}
       name='arrowleft'
       size={40}
       color='black'
+      {...props}
     />
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   arrow: {
     marginLeft: 25,
-    marginTop: 45
-  }
-})
+    marginTop: 45,
+  },
+});
 
-export default BackArrow
+export default BackArrow;

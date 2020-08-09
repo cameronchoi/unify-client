@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "BuddyNow",
-    "slug": "BuddyNow",
+    "name": "unify-client",
+    "slug": "unify-client",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,6 +19,11 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "sdkVersion": "38.0.0",
+    "scheme": "https",
+    "platforms": ["ios", "android", "web"],
+    "description": "",
+    "githubUrl": "https://github.com/cameronchoi/unify-client"
   }
 }
