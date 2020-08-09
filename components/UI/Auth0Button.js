@@ -16,7 +16,7 @@ const Auth0Button = ({ onPressSideEffects, onResponse, ...props }) => {
     redirectUri,
     clientId: auth0ClientId,
     responseType: 'id_token',
-    scopes: ['openid', 'profile', 'email'],
+    scopes: ['openid', 'sub', 'profile', 'email'],
     extraParams: {
       nonce: 'nonce',
     },
