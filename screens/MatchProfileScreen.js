@@ -66,10 +66,7 @@ const MatchProfileScreen = () => {
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={{ alignItems: "center" }}
-    >
+    <View style={styles.container}>
       <ReportModal
         modalOpen={modalOpen}
         backHandler={() => setModalOpen(false)}
@@ -152,13 +149,14 @@ const MatchProfileScreen = () => {
         style={{ backgroundColor: "red" }}
         textColour="white"
       />
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
   },
   picture: {
     marginVertical: 20,

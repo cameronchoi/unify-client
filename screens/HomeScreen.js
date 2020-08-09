@@ -29,6 +29,10 @@ export default function HomeScreen({ navigation }) {
 
   const onPressHandler = () => {
     setLoading(true);
+    console.log(matchByDegree);
+    console.log(matchBySubject);
+    console.log(matchByPersonality);
+    console.log(state.userToken);
     fetch(
       "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/match",
       {
@@ -46,6 +50,7 @@ export default function HomeScreen({ navigation }) {
     )
       .then((res) => res.json())
       .then((resData) => {
+        console.log(resData);
         if (resData.error) {
           setLoading(false);
           alert(resData.error);
