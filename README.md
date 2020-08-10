@@ -31,7 +31,7 @@ For the user it is as simple as hitting the ‘Unify’ button in the home scree
 **Verification and sign up process** - students can input their email address to sign up or use social login provided by Auth0. Autocomplete inputs allow an easy sign up process.
 
 <p align="center">
-  <img src="./screenshots/startupscreen.png" alt="startup">
+  <img src="./screenshots/Startupscreen.png" alt="startup">
 </p>
 
 **Matching options** - the application can match students to each other according to degree, subjects and interests
