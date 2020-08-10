@@ -31,37 +31,42 @@ For the user it is as simple as hitting the ‘Unify’ button in the home scree
 **Verification and sign up process** - students can input their email address to sign up or use social login provided by Auth0. Autocomplete inputs allow an easy sign up process.
 
 <p align="center">
-  <img src="./screenshots/Startupscreen.png" alt="startup">
+  <img src="./screenshots/Startupscreen.png" alt="startup"
+  height="400">
 </p>
 
 **Matching options** - the application can match students to each other according to degree, subjects and interests
 
 <p align="center">
-  <img src="./screenshots/Match2.png" alt="match2">
+  <img src="./screenshots/Match2.png" alt="match2"
+  height="400">
 </p>
 
 **Profile** - Students are given the opportunity to display their customisable avatar, university, degree, units, interests. Each profile is only visible to matched users
 
 <p align="center">
-  <img src="./screenshots/Profile.png" alt="profile" height="200">
+  <img src="./screenshots/Profile.png" alt="profile" height="400">
 </p>
 
 **Automatic Matching Function** - students can request for a new match anytime with others who are searching.
 
 <p align="center">
-  <img src="./screenshots/Match1.png" alt="match1">
+  <img src="./screenshots/Match1.png" alt="match1"
+  height="400">
 </p>
 
 **Chat box** - Once the process of matching is complete, students are notified and can access all active chats and begin chatting with matched users
 
 <p align="center">
-  <img src="./screenshots/Message.png" alt="message">
+  <img src="./screenshots/Message.png" alt="message"
+  height="400">
 </p>
 
 **Report Function** - Users are able to report other users for inappropriate behaviour through the report function
 
 <p align="center">
-  <img src="./screenshots/Report.png" alt="report">
+  <img src="./screenshots/Report.png" alt="report"
+  height="400">
 </p>
 
 ## Technology Stack
