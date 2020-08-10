@@ -14,6 +14,9 @@ import ReportModal from "../components/UI/ReportModal";
 
 import { MatchContext } from "../context/MatchContext";
 
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 import Colours from "../constants/colours";
 import baseUrl from "../constants/baseUrl";
 
@@ -64,88 +67,68 @@ const MatchProfileScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      //   contentContainerStyle={{ alignItems: "center" }}
+    >
       <ReportModal
         modalOpen={modalOpen}
         backHandler={() => setModalOpen(false)}
       />
-      <View style={styles.picture}>
-        <ProfilePicture
-          size="medium"
-          uri={`https://avataaars.io/png?topType=${topType}&hairColor=${hairColour}&clotheType=${clotheType}&skinColor=${skinColour}&avatarStyle=Circle`}
-        />
-      </View>
-      <MediumText
-        style={{ fontSize: 20 }}
-      >{`${firstName} ${lastName}`}</MediumText>
-      <View
-        style={{
-          width: 300,
-          borderRadius: 10,
-          alignItems: "center",
-          padding: 10,
-          marginVertical: 20,
-          backgroundColor: Colours.primary,
-        }}
-      >
-        <NormalText style={{ fontSize: 16, marginBottom: 5, color: "white" }}>
-          {uniName}
-        </NormalText>
-      </View>
-      <View
-        style={{
-          width: 300,
-          borderRadius: 10,
-          alignItems: "center",
-          padding: 10,
-          marginBottom: 20,
-          backgroundColor: Colours.primary,
-        }}
-      >
-        <NormalText style={{ fontSize: 16, marginBottom: 5, color: "white" }}>
-          {degree}
-        </NormalText>
-      </View>
-      <View
-        style={{
-          width: 300,
-          backgroundColor: Colours.primary,
-          borderRadius: 10,
-          alignItems: "center",
-          paddingTop: 15,
-          paddingBottom: 20,
-          marginBottom: 50,
-        }}
-      >
-        <NormalText
-          style={{
-            fontSize: 16,
-            marginBottom: 5,
-            alignItems: "center",
-            color: "white",
-          }}
-        >
-          Subjects
-        </NormalText>
-        <FlatList
-          style={{ marginTop: 10 }}
-          numColumns={2}
-          keyExtractor={(item) => Math.random()}
-          data={subjects}
-          renderItem={({ item }) => (
-            <View style={styles.subjectText}>
-              <Text style={{ color: "white" }}>{item}</Text>
+      <FlatList
+        style={{ marginTop: 10, flex: 1, width: "100%" }}
+        contentContainerStyle={{ alignItems: "center", width: "100%" }}
+        ListHeaderComponent={
+          <>
+            <View style={styles.pictureContainer}>
+              <ProfilePicture
+                style={styles.picture}
+                size="medium"
+                uri={`https://avataaars.io/png?topType=${topType}&hairColor=${hairColour}&clotheType=${clotheType}&skinColor=${skinColour}&avatarStyle=Circle`}
+              />
+              <MediumText
+                style={{ fontSize: 24, marginBottom: 5, color: "white" }}
+              >
+                {`${firstName} ${lastName}`}
+              </MediumText>
             </View>
-          )}
-        />
-      </View>
-      <StartButton
-        onPress={() => {
-          setModalOpen(true);
-        }}
-        title="Report user"
-        style={{ backgroundColor: "red" }}
-        textColour="white"
+            <View style={styles.bigContainer}>
+              <View style={styles.schoolContainer}>
+                <FontAwesome5 name="school" size={24} color="white" />
+                <NormalText style={styles.infoText}>{uniName}</NormalText>
+              </View>
+              <View style={styles.degreeContainer}>
+                <Ionicons name="md-school" size={33} color="white" />
+                <NormalText style={styles.infoText}>{degree}</NormalText>
+              </View>
+            </View>
+            <View style={styles.subjectContainer}>
+              <NormalText style={styles.subjectTitle}>
+                Current Subjects
+              </NormalText>
+            </View>
+          </>
+        }
+        numColumns={2}
+        keyExtractor={(item) => Math.random()}
+        data={subjects}
+        renderItem={({ item }) => (
+          <View style={styles.subjectText}>
+            <Text style={{ color: "white" }}>{item}</Text>
+          </View>
+        )}
+        ListFooterComponent={
+          <View style={styles.buttonContainer}>
+            <StartButton
+              onPress={() => {
+                setModalOpen(true);
+              }}
+              title="Report user"
+              style={{ backgroundColor: "red" }}
+              textColour="white"
+            />
+          </View>
+        }
       />
     </View>
   );
@@ -154,21 +137,69 @@ const MatchProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colours.primary,
     alignItems: "center",
   },
   picture: {
-    marginVertical: 20,
+    marginBottom: 15,
+  },
+  pictureContainer: {
+    marginVertical: 10,
+    alignItems: "center",
+  },
+  schoolContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopWidth: 0.7,
+    borderTopColor: "white",
+    borderBottomWidth: 0.7,
+    borderBottomColor: "white",
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+  },
+  degreeContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 0.7,
+    borderBottomColor: "white",
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+  },
+  infoText: {
+    fontSize: 20,
+    color: "white",
+  },
+  subjectContainer: {
+    alignItems: "center",
+  },
+  subjectTitle: {
+    fontSize: 20,
+    color: "white",
+    paddingTop: 15,
   },
   subjectText: {
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
     borderColor: "white",
-    marginVertical: 3,
     padding: 5,
     borderRadius: 5,
-    marginHorizontal: 30,
+    marginHorizontal: 25,
+    marginBottom: 10,
+    marginVertical: 15,
     width: 90,
+  },
+  bigContainer: {
+    width: "100%",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 20,
+    marginTop: 15,
   },
 });
 
