@@ -2,13 +2,13 @@
 
 Creating a high degree of connection for students, by students
 
-## Author
+## Authors
 
 Cameron Choi - University of Sydney
 
 Andrew Chung - Northwestern University
 
-## Business Docs
+## Business Document
 
 https://www.canva.com/design/DAEEdfstH7g/sruyx63H3dC-mElRDsbAVg/view?utm_content=DAEEdfstH7g&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
@@ -28,17 +28,23 @@ For the user it is as simple as hitting the ‘Unify’ button in the home scree
 
 ## Key Features
 
-**Verification and sign up process** - students can input their email address to sign up
+**Verification and sign up process** - students can input their email address to sign up or use social login provided by Auth0. Autocomplete inputs allow an easy sign up process.
+![startup](./screenshots/startupscreen.png)
 
 **Matching options** - the application can match students to each other according to degree, subjects and interests
+![match2](./screenshots/match2.png)
 
 **Profile** - Students are given the opportunity to display their customisable avatar, university, degree, units, interests. Each profile is only visible to matched users
+![profile](./screenshots/profile.png)
 
-**Automatic Matching Function** - students can request for a new match anytime with others who are searching. There is a monthly limit of 8 matches for the free users.
+**Automatic Matching Function** - students can request for a new match anytime with others who are searching.
+![match1](./screenshots/match1.png)
 
 **Chat box** - Once the process of matching is complete, students are notified and can access all active chats and begin chatting with matched users
+![message](./screenshots/message.png)
 
 **Report Function** - Users are able to report other users for inappropriate behaviour through the report function
+![report](./screenshots/report.png)
 
 ## Technology Stack
 
@@ -100,6 +106,6 @@ For University of Sydney
 
 If you wish to test the sign in feature without signing up you can use the following login details
 
-Email: test@email.com
+Email: unifyteam@email.com
 
 Password: 123456
