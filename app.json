@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "unify-client",
-    "slug": "unify-client",
+    "name": "unify",
+    "slug": "unify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,16 +13,26 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.unify",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "sdkVersion": "38.0.0",
-    "scheme": "https",
-    "platforms": ["ios", "android", "web"],
+    "scheme": "unify",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "description": "",
     "githubUrl": "https://github.com/cameronchoi/unify-client"
   }
