@@ -43,7 +43,7 @@ For the user it is as simple as hitting the ‘Unify’ button in the home scree
 **Profile** - Students are given the opportunity to display their customisable avatar, university, degree, units, interests. Each profile is only visible to matched users
 
 <p align="center">
-  <img src="./screenshots/Profile.png" alt="profile">
+  <img src="./screenshots/Profile.png" alt="profile" height="200">
 </p>
 
 **Automatic Matching Function** - students can request for a new match anytime with others who are searching.
