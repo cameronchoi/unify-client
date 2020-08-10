@@ -36,7 +36,7 @@ const MatchProfileScreen = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${baseUrl.au}/user/${matchState.matchEmail}`)
+    fetch(`${baseUrl.us}/user/${matchState.matchEmail}`)
       .then((res) => res.json())
       .then((resData) => {
         setTopType(resData.avatar.topType);

@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }) {
     console.log(matchBySubject);
     console.log(matchByPersonality);
     console.log(state.userToken);
-    fetch(`${baseUrl.au}/match`, {
+    fetch(`${baseUrl.us}/match`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

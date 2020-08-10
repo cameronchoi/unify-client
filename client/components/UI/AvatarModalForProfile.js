@@ -92,7 +92,7 @@ const AvatarModal = ({
             loading={loading}
             onPress={() => {
               setLoading(true);
-              fetch(`${baseUrl.au}/avatar`, {
+              fetch(`${baseUrl.us}/avatar`, {
                 method: "PATCH",
                 headers: {
                   "Content-Type": "application/json",

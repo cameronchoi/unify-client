@@ -17,7 +17,7 @@ export default function UniNameSignUpScreen({ navigation }) {
   useEffect(() => {
     const getUniversities = async () => {
       try {
-        let res = await fetch(`${baseUrl.au}/uni`);
+        let res = await fetch(`${baseUrl.us}/uni`);
         const data = await res.json();
         if (data.error) {
           alert(data.error);

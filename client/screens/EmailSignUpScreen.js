@@ -40,7 +40,7 @@ export default function EmailSignUpScreen({ navigation }) {
           onPress={() => {
             if (validateEmail(text)) {
               setLoading(true);
-              fetch(`${baseUrl.au}/email`, {
+              fetch(`${baseUrl.us}/email`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

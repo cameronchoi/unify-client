@@ -37,7 +37,7 @@ export default function ProfileScreen({ navigation }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${baseUrl.au}/user`, {
+    fetch(`${baseUrl.us}/user`, {
       headers: {
         Authorization: `Bearer ${state.userToken}`,
       },

@@ -73,7 +73,7 @@ const SignInScreen = ({ navigation }) => {
             onPress={() => {
               //   dispatch({ type: 'SIGN_IN', token: 'token' })
               setLoading(true);
-              fetch(`${baseUrl.au}/login`, {
+              fetch(`${baseUrl.us}/login`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

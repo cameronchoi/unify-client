@@ -49,7 +49,7 @@ export default function WelcomeScreen({ navigation }) {
             };
             console.log(data);
             setLoading(true);
-            fetch(`${baseUrl.au}/signup`, {
+            fetch(`${baseUrl.us}/signup`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -27,7 +27,7 @@ export default function SubjectSignUpScreen({ navigation }) {
     const getSubjects = async () => {
       try {
         let res = await fetch(
-          `${baseUrl.au}/subjects?uniName=${signUpState.uniName}`
+          `${baseUrl.us}/subjects?uniName=${signUpState.uniName}`
         );
         const data = await res.json();
         if (data.error) {

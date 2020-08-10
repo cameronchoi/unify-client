@@ -18,7 +18,7 @@ export default function DegreeSignUpScreen({ navigation }) {
     const getDegrees = async () => {
       try {
         let res = await fetch(
-          `${baseUrl.au}/degrees?uniName=${signUpState.uniName}`
+          `${baseUrl.us}/degrees?uniName=${signUpState.uniName}`
         );
         const data = await res.json();
         if (data.error) {

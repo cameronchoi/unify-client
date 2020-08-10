@@ -71,7 +71,7 @@ const MessagingScreen = (props) => {
             fire1.db.add(message);
             txt = text;
           }
-          fetch(`${baseUrl.au}/matches`, {
+          fetch(`${baseUrl.us}/matches`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
