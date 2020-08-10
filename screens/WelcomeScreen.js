@@ -1,25 +1,26 @@
-import React, { useContext, useState } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import React, { useContext, useState } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
 
-import { FontAwesome5 } from '@expo/vector-icons'
-import Colour from '../constants/colours'
+import { FontAwesome5 } from "@expo/vector-icons";
+import Colour from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
-import MediumText from '../components/UI/MediumText'
-import SubmitButton from '../components/UI/SubmitButton'
+import MediumText from "../components/UI/MediumText";
+import SubmitButton from "../components/UI/SubmitButton";
 
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from "../context/AuthContext";
 
-import { SignUpContext } from '../context/SignUpContext'
+import { SignUpContext } from "../context/SignUpContext";
 
-export default function WelcomeScreen ({ navigation }) {
-  const [signUpState] = useContext(SignUpContext)
-  const [state, dispatch] = useContext(AuthContext)
-  const [loading, setLoading] = useState(false)
+export default function WelcomeScreen({ navigation }) {
+  const [signUpState] = useContext(SignUpContext);
+  const [state, dispatch] = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 2, alignItems: 'center', marginTop: 200 }}>
-        <FontAwesome5 name='user-friends' size={70} color={Colour.primary} />
+      <View style={{ flex: 2, alignItems: "center", marginTop: 200 }}>
+        <FontAwesome5 name="user-friends" size={70} color={Colour.primary} />
         <MediumText style={{ fontSize: 30, marginTop: 15 }}>
           Welcome to unify!
         </MediumText>
@@ -44,46 +45,43 @@ export default function WelcomeScreen ({ navigation }) {
               topType: signUpState.avatar.topType,
               hairColour: signUpState.avatar.hairColour,
               clotheType: signUpState.avatar.clotheType,
-              skinColour: signUpState.avatar.skinColour
-            }
-            console.log(data)
-            setLoading(true)
-            fetch(
-              'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/signup',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-              }
-            )
-              .then(res => res.json())
-              .then(resData => {
-                console.log(resData)
-                setLoading(false)
+              skinColour: signUpState.avatar.skinColour,
+            };
+            console.log(data);
+            setLoading(true);
+            fetch(`${baseUrl.au}/signup`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((res) => res.json())
+              .then((resData) => {
+                console.log(resData);
+                setLoading(false);
                 dispatch({
-                  type: 'SIGN_IN',
+                  type: "SIGN_IN",
                   token: resData.token,
-                  email: resData.email
-                })
+                  email: resData.email,
+                });
               })
-              .catch(err => {
-                setLoading(false)
-                console.log(err)
-              })
+              .catch((err) => {
+                setLoading(false);
+                console.log(err);
+              });
           }}
         >
           Get Started
         </SubmitButton>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
-  }
-})
+    alignItems: "center",
+  },
+});

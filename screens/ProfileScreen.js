@@ -6,7 +6,6 @@ import {
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
-  ScrollView,
 } from "react-native";
 
 import { AuthContext } from "../context/AuthContext";
@@ -17,6 +16,8 @@ import NormalText from "../components/UI/NormalText";
 import AvatarModal from "../components/UI/AvatarModalForProfile";
 import Colours from "../constants/colours";
 import StartButton from "../components/UI/StartButton";
+
+import baseUrl from "../constants/baseUrl";
 
 export default function ProfileScreen({ navigation }) {
   const [state, dispatch] = useContext(AuthContext);
@@ -34,14 +35,11 @@ export default function ProfileScreen({ navigation }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user`,
-      {
-        headers: {
-          Authorization: `Bearer ${state.userToken}`,
-        },
-      }
-    )
+    fetch(`${baseUrl.au}/user`, {
+      headers: {
+        Authorization: `Bearer ${state.userToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((resData) => {
         setTopType(resData.avatar.topType);

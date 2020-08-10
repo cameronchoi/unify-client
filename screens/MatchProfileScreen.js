@@ -5,7 +5,6 @@ import {
   FlatList,
   Text,
   ActivityIndicator,
-  ScrollView,
 } from "react-native";
 import ProfilePicture from "../components/UI/ProfilePicture";
 import MediumText from "../components/UI/MediumText";
@@ -16,6 +15,7 @@ import ReportModal from "../components/UI/ReportModal";
 import { MatchContext } from "../context/MatchContext";
 
 import Colours from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
 const MatchProfileScreen = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,9 +33,7 @@ const MatchProfileScreen = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/user/${matchState.matchEmail}`
-    )
+    fetch(`${baseUrl.au}/user/${matchState.matchEmail}`)
       .then((res) => res.json())
       .then((resData) => {
         setTopType(resData.avatar.topType);

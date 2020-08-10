@@ -1,23 +1,23 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
-import SubmitButton from '../components/UI/SubmitButton';
-import AutocompleteInput from '../components/UI/AutocompleteInput.js';
-import MediumText from '../components/UI/MediumText';
-import BackArrow from '../components/UI/BackArrow';
+import React, { useState, useContext, useEffect } from "react";
+import { Platform, StyleSheet, View } from "react-native";
+import SubmitButton from "../components/UI/SubmitButton";
+import AutocompleteInput from "../components/UI/AutocompleteInput.js";
+import MediumText from "../components/UI/MediumText";
+import BackArrow from "../components/UI/BackArrow";
 
-import { SignUpContext } from '../context/SignUpContext';
+import { SignUpContext } from "../context/SignUpContext";
+
+import baseUrl from "../constants/baseUrl";
 
 export default function UniNameSignUpScreen({ navigation }) {
   const [universities, setUniversities] = useState([]);
-  const [uniName, setUniName] = useState('');
+  const [uniName, setUniName] = useState("");
   const [signUpState, dispatch] = useContext(SignUpContext);
 
   useEffect(() => {
     const getUniversities = async () => {
       try {
-        let res = await fetch(
-          'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/uni'
-        );
+        let res = await fetch(`${baseUrl.au}/uni`);
         const data = await res.json();
         if (data.error) {
           alert(data.error);
@@ -34,10 +34,10 @@ export default function UniNameSignUpScreen({ navigation }) {
   const validateUniversity = () => {
     const uniNames = universities.map((uni) => uni.name);
     if (uniNames.includes(uniName)) {
-      dispatch({ type: 'UNI_NAME', uniName });
-      navigation.navigate('UniYearSignUp');
+      dispatch({ type: "UNI_NAME", uniName });
+      navigation.navigate("UniYearSignUp");
     } else {
-      alert('Not a valid university name.');
+      alert("Not a valid university name.");
     }
   };
 
@@ -49,15 +49,15 @@ export default function UniNameSignUpScreen({ navigation }) {
         }}
       />
       <MediumText style={styles.title}>My university name is...</MediumText>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: "center" }}>
         <AutocompleteInput
           data={universities.map((uni) => uni.name)}
           onChangeText={setUniName}
           value={uniName}
-          placeholder='University Name'
+          placeholder="University Name"
           style={styles.test}
         />
-        {Platform.OS == 'android' ? (
+        {Platform.OS == "android" ? (
           <View style={styles.submitContainer}>
             <SubmitButton onPress={validateUniversity}>Continue</SubmitButton>
           </View>
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     marginBottom: 70,
   },
   submitContainer: {
-    alignItems: 'center',
-    width: '100%',
+    alignItems: "center",
+    width: "100%",
     marginTop: 140,
     zIndex: 0,
   },

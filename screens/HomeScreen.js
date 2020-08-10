@@ -15,6 +15,7 @@ import { MatchContext } from "../context/MatchContext";
 import { AuthContext } from "../context/AuthContext";
 
 import Colours from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
 export default function HomeScreen({ navigation }) {
   const [matchState, matchDispatch] = useContext(MatchContext);
@@ -33,21 +34,18 @@ export default function HomeScreen({ navigation }) {
     console.log(matchBySubject);
     console.log(matchByPersonality);
     console.log(state.userToken);
-    fetch(
-      "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/match",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${state.userToken}`,
-        },
-        body: JSON.stringify({
-          degree: matchByDegree,
-          subject: matchBySubject,
-          personality: matchByPersonality,
-        }),
-      }
-    )
+    fetch(`${baseUrl.au}/match`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${state.userToken}`,
+      },
+      body: JSON.stringify({
+        degree: matchByDegree,
+        subject: matchBySubject,
+        personality: matchByPersonality,
+      }),
+    })
       .then((res) => res.json())
       .then((resData) => {
         console.log(resData);

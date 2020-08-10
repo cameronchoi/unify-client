@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
-import SubmitButton from '../components/UI/SubmitButton';
-import AutocompleteInput from '../components/UI/AutocompleteInput';
-import MediumText from '../components/UI/MediumText';
-import BackArrow from '../components/UI/BackArrow';
+import React, { useState, useEffect, useContext } from "react";
+import { Platform, StyleSheet, View } from "react-native";
+import SubmitButton from "../components/UI/SubmitButton";
+import AutocompleteInput from "../components/UI/AutocompleteInput";
+import MediumText from "../components/UI/MediumText";
+import BackArrow from "../components/UI/BackArrow";
 
-import { SignUpContext } from '../context/SignUpContext';
+import { SignUpContext } from "../context/SignUpContext";
+
+import baseUrl from "../constants/baseUrl";
 
 export default function DegreeSignUpScreen({ navigation }) {
   const [degrees, setDegrees] = useState([]);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [signUpState, dispatch] = useContext(SignUpContext);
 
   useEffect(() => {
     const getDegrees = async () => {
       try {
         let res = await fetch(
-          `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/degrees?uniName=${signUpState.uniName}`
+          `${baseUrl.au}/degrees?uniName=${signUpState.uniName}`
         );
         const data = await res.json();
         if (data.error) {
@@ -34,8 +36,8 @@ export default function DegreeSignUpScreen({ navigation }) {
   const validateDegree = () => {
     for (let i = 0; i < degrees.length; i++) {
       if (degrees[i].degreeName === text) {
-        dispatch({ type: 'DEGREE', degreeName: text, degreeId: degrees[i].id });
-        return navigation.navigate('SubjectSignUp');
+        dispatch({ type: "DEGREE", degreeName: text, degreeId: degrees[i].id });
+        return navigation.navigate("SubjectSignUp");
       }
     }
     alert(`Not a valid degree name for ${signUpState.uniName}.`);
@@ -49,15 +51,15 @@ export default function DegreeSignUpScreen({ navigation }) {
         }}
       />
       <MediumText style={styles.title}>My degree is...</MediumText>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: "center" }}>
         <AutocompleteInput
           data={degrees.map((degree) => degree.degreeName)}
           onChangeText={setText}
           value={text}
-          placeholder='Degree Name'
+          placeholder="Degree Name"
           style={styles.test}
         />
-        {Platform.OS == 'android' ? (
+        {Platform.OS == "android" ? (
           <View style={styles.submitContainer}>
             <SubmitButton onPress={validateDegree}>Continue</SubmitButton>
           </View>
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
     marginBottom: 70,
   },
   submitContainer: {
-    alignItems: 'center',
-    width: '100%',
+    alignItems: "center",
+    width: "100%",
     marginTop: 140,
     zIndex: 0,
   },

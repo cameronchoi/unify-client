@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Modal,
   TouchableOpacity,
-  ActivityIndicator,
   ScrollView,
 } from "react-native";
 
@@ -15,6 +14,8 @@ import HairColourPicker from "./HairColourPicker";
 import ClotheTypePicker from "./ClotheTypePicker";
 import SkinColourPicker from "./SkinColourPicker";
 import SubmitButton from "./SubmitButton";
+
+import baseUrl from "../../constants/baseUrl";
 
 import { AuthContext } from "../../context/AuthContext";
 
@@ -91,22 +92,19 @@ const AvatarModal = ({
             loading={loading}
             onPress={() => {
               setLoading(true);
-              fetch(
-                "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/avatar",
-                {
-                  method: "PATCH",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${state.userToken}`,
-                  },
-                  body: JSON.stringify({
-                    topType,
-                    clotheType,
-                    hairColour,
-                    skinColour,
-                  }),
-                }
-              )
+              fetch(`${baseUrl.au}/avatar`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${state.userToken}`,
+                },
+                body: JSON.stringify({
+                  topType,
+                  clotheType,
+                  hairColour,
+                  skinColour,
+                }),
+              })
                 .then((res) => res.json())
                 .then((resData) => {
                   console.log(resData);

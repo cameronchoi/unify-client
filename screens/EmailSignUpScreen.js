@@ -7,6 +7,8 @@ import BackArrow from "../components/UI/BackArrow";
 
 import { SignUpContext } from "../context/SignUpContext";
 
+import baseUrl from "../constants/baseUrl";
+
 export default function EmailSignUpScreen({ navigation }) {
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -38,18 +40,15 @@ export default function EmailSignUpScreen({ navigation }) {
           onPress={() => {
             if (validateEmail(text)) {
               setLoading(true);
-              fetch(
-                "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/email",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    email: text,
-                  }),
-                }
-              )
+              fetch(`${baseUrl.au}/email`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  email: text,
+                }),
+              })
                 .then((res) => res.json())
                 .then((resData) => {
                   if (resData.error) {

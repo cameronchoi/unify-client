@@ -12,6 +12,7 @@ import AutocompleteInput from "../components/UI/AutocompleteInput";
 import MediumText from "../components/UI/MediumText";
 import BackArrow from "../components/UI/BackArrow";
 import Colour from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
 import { SignUpContext } from "../context/SignUpContext";
 
@@ -26,7 +27,7 @@ export default function SubjectSignUpScreen({ navigation }) {
     const getSubjects = async () => {
       try {
         let res = await fetch(
-          `https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/subjects?uniName=${signUpState.uniName}`
+          `${baseUrl.au}/subjects?uniName=${signUpState.uniName}`
         );
         const data = await res.json();
         if (data.error) {

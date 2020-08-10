@@ -1,15 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
-import jwtDecode from 'jwt-decode';
-import NormalText from '../components/UI/NormalText';
-import StartButton from '../components/UI/StartButton';
-import Auth0Button from '../components/UI/Auth0Button';
-import { SignUpContext } from '../context/SignUpContext';
-import { AuthContext } from '../context/AuthContext';
+import React, { useState, useContext } from "react";
+import { StyleSheet, View } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
+import jwtDecode from "jwt-decode";
+import NormalText from "../components/UI/NormalText";
+import StartButton from "../components/UI/StartButton";
+import Auth0Button from "../components/UI/Auth0Button";
+import { SignUpContext } from "../context/SignUpContext";
+import { AuthContext } from "../context/AuthContext";
 
-import { FontAwesome5 } from '@expo/vector-icons';
-import Colours from '../constants/colours';
+import { FontAwesome5 } from "@expo/vector-icons";
+import Colours from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
 export default function StartUpScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
@@ -19,34 +20,31 @@ export default function StartUpScreen({ navigation }) {
   const oAuthSignIn = async (jwtToken) => {
     try {
       const { sub, given_name, family_name, email } = jwtDecode(jwtToken);
-      const res = await fetch(
-        'https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            password: sub,
-          }),
-        }
-      );
+      const res = await fetch(`${baseUrl.au}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password: sub,
+        }),
+      });
       const resData = await res.json();
       setLoading(false);
       if (!resData.token) {
         // Redirect to signup
-        signUpDispatch({ type: 'EMAIL', email });
-        signUpDispatch({ type: 'PASSWORD', password: sub });
+        signUpDispatch({ type: "EMAIL", email });
+        signUpDispatch({ type: "PASSWORD", password: sub });
         signUpDispatch({
-          type: 'NAME',
+          type: "NAME",
           firstName: given_name,
           lastName: family_name,
         });
-        navigation.navigate('UniNameSignUp');
+        navigation.navigate("UniNameSignUp");
       } else {
         authDispatch({
-          type: 'SIGN_IN',
+          type: "SIGN_IN",
           token: resData.token,
           email: resData.email,
         });
@@ -61,10 +59,10 @@ export default function StartUpScreen({ navigation }) {
     if (response) {
       if (response.error) {
         alert(
-          'Authentication error',
-          response.params.error_description || 'something went wrong'
+          "Authentication error",
+          response.params.error_description || "something went wrong"
         );
-      } else if (response.type === 'success') {
+      } else if (response.type === "success") {
         const jwtToken = response.params.id_token;
         oAuthSignIn(jwtToken);
       }
@@ -75,22 +73,22 @@ export default function StartUpScreen({ navigation }) {
     <View style={{ flex: 1 }}>
       {loading && (
         <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <ActivityIndicator size='large' />
+          <ActivityIndicator size="large" />
         </View>
       )}
-      <View style={loading ? { display: 'none' } : styles.container}>
+      <View style={loading ? { display: "none" } : styles.container}>
         <View style={styles.logo}>
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: "center" }}>
             <FontAwesome5
-              style={{ alignItems: 'center' }}
-              name='user-friends'
+              style={{ alignItems: "center" }}
+              name="user-friends"
               size={90}
-              color='white'
+              color="white"
             />
           </View>
-          <NormalText style={{ color: 'white', fontSize: 70 }}>
+          <NormalText style={{ color: "white", fontSize: 70 }}>
             unify
           </NormalText>
         </View>
@@ -102,17 +100,17 @@ export default function StartUpScreen({ navigation }) {
           <StartButton
             textColour={Colours.primary}
             style={styles.signInButton}
-            title='Sign in'
+            title="Sign in"
             onPress={() => {
-              navigation.navigate('SignIn');
+              navigation.navigate("SignIn");
             }}
           />
           <StartButton
-            textColour='white'
+            textColour="white"
             style={styles.signUpButton}
-            title='Sign up'
+            title="Sign up"
             onPress={() => {
-              navigation.navigate('EmailSignUp');
+              navigation.navigate("EmailSignUp");
             }}
           />
         </View>
@@ -125,19 +123,19 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colours.primary,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   logo: {
     flex: 3,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   buttons: {
     flex: 1,
   },
   signInButton: {
     marginTop: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   signUpButton: {
     marginTop: 20,

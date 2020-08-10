@@ -7,6 +7,7 @@ import SubmitButton from "../components/UI/SubmitButton";
 import BackArrow from "../components/UI/BackArrow";
 
 import Colours from "../constants/colours";
+import baseUrl from "../constants/baseUrl";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -72,19 +73,16 @@ const SignInScreen = ({ navigation }) => {
             onPress={() => {
               //   dispatch({ type: 'SIGN_IN', token: 'token' })
               setLoading(true);
-              fetch(
-                "https://australia-southeast1-unify-40e9b.cloudfunctions.net/api/login",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    email: email,
-                    password: password,
-                  }),
-                }
-              )
+              fetch(`${baseUrl.au}/login`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  email: email,
+                  password: password,
+                }),
+              })
                 .then((res) => res.json())
                 .then((resData) => {
                   setLoading(false);
