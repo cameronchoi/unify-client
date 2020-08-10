@@ -35,19 +35,34 @@ For the user it is as simple as hitting the ‘Unify’ button in the home scree
 </p>
 
 **Matching options** - the application can match students to each other according to degree, subjects and interests
-![match2](./screenshots/match2.png)
+
+<p align="center">
+  <img src="./screenshots/Match2.png" alt="match2">
+</p>
 
 **Profile** - Students are given the opportunity to display their customisable avatar, university, degree, units, interests. Each profile is only visible to matched users
-![profile](./screenshots/profile.png)
+
+<p align="center">
+  <img src="./screenshots/Profile.png" alt="profile">
+</p>
 
 **Automatic Matching Function** - students can request for a new match anytime with others who are searching.
-![match1](./screenshots/match1.png)
+
+<p align="center">
+  <img src="./screenshots/Match1.png" alt="match1">
+</p>
 
 **Chat box** - Once the process of matching is complete, students are notified and can access all active chats and begin chatting with matched users
-![message](./screenshots/message.png)
+
+<p align="center">
+  <img src="./screenshots/Message.png" alt="message">
+</p>
 
 **Report Function** - Users are able to report other users for inappropriate behaviour through the report function
-![report](./screenshots/report.png)
+
+<p align="center">
+  <img src="./screenshots/Report.png" alt="report">
+</p>
 
 ## Technology Stack
 
