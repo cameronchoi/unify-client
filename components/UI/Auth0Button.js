@@ -9,7 +9,7 @@ const authorizationEndpoint = 'https://unify.au.auth0.com/authorize';
 
 // creates proxy redirectUri for native app (uses window.location when on web)
 const useProxy = Platform.select({ web: false, default: true });
-const redirectUri = makeRedirectUri({ native: 'unify://redirect', useProxy });
+const redirectUri = makeRedirectUri({ useProxy, native: 'unify://' });
 
 const Auth0Button = ({ onPressSideEffects, onResponse, ...props }) => {
   const config = {
