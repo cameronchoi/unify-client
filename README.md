@@ -10,13 +10,11 @@ Andrew Chung - Northwestern University
 
 ## Important Links
 
-Client code: https://github.com/cameronchoi/unify-client
-
 Business Docs: https://www.canva.com/design/DAEDLLeFjd8/xmr_qo9yKx7FM7DKe1vM3Q/view?utm_content=DAEDLLeFjd8&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 
 ## Video
 
-[![](http://img.youtube.com/vi/iYj3i6y5SHk/0.jpg)](http://www.youtube.com/watch?v=iYj3i6y5SHk 'Unify')
+[![](http://img.youtube.com/vi/iYj3i6y5SHk/0.jpg)](http://www.youtube.com/watch?v=iYj3i6y5SHk "Unify")
 
 ## Technologies Used
 
